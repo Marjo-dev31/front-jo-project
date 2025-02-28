@@ -45,43 +45,49 @@
             </svg>
         </div>
         <div class="hidden md:flex">
-            <ul class="flex gap-4 *:px-2 *:py-1">
-                <li
-                    class="hover:underline hover:shadow hover:shadow-secondary hover:rounded-xl"
-                >
-                    <a>Offres</a>
+            <ul class="flex gap-4 *:px-3 *:py-1">
+                <li class="relative hover:cursor-pointer">
+                    <a
+                        class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
+                        ><span class="relative z-10">Offres</span></a
+                    >
                 </li>
-                <li
-                    class="hover:underline hover:shadow hover:shadow-secondary hover:rounded-xl"
-                >
-                    <a>Panier</a>
+                <li class="relative hover:cursor-pointer">
+                    <a
+                        class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
+                        ><span class="relative z-10">Panier</span></a
+                    >
                 </li>
                 <!-- if connection or not -->
                 @if (isConnected) {
                     @if (isAdmin) {
-                        <li
-                            class="hover:underline hover:shadow hover:shadow-secondary hover:rounded-xl"
-                        >
-                            <a>Dashboard</a>
+                        <li class="relative hover:cursor-pointer">
+                            <a
+                                class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
+                                ><span class="relative z-10">Dashboard</span></a
+                            >
                         </li>
                     } @else {
-                        <li
-                            class="hover:underline hover:shadow hover:shadow-secondary hover:rounded-xl"
-                        >
-                            <a>Espace personnel</a>
+                        <li class="relative hover:cursor-pointer">
+                            <a
+                                class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
+                                ><span class="relative z-10">Espace personnel</span></a
+                            >
                         </li>
                     }
-                    <li
-                        class="hover:underline hover:shadow hover:shadow-secondary hover:rounded-xl"
-                    >
-                        <a>Déconnexion</a>
+                    <li class="relative hover:cursor-pointer">
+                        <a
+                            class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
+                            ><span class="relative z-10">Déconnexion</span></a
+                        >
                     </li>
                     <!-- if role admin else user -->
                 } @else {
-                    <li
-                        class="hover:underline hover:shadow hover:shadow-secondary hover:rounded-xl"
-                    >
-                        <a>Se connecter</a>
+                    <li class="relative hover:cursor-pointer">
+                        <a
+                            class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
+                            ><span class="relative z-10">Se connecter</span></a
+                        >
                     </li>
                 }
             </ul>
