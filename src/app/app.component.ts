@@ -6,7 +6,9 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 @Component({
     selector: 'app-root',
     imports: [RouterOutlet, HeaderComponent, FooterComponent],
-    template: `<app-header /> <router-outlet /> <app-footer class="mt-auto" />`,
+    template: `<app-header />
+        <main><router-outlet /></main>
+        <app-footer class="mt-auto" />`,
     styleUrl: './app.component.css',
 })
 export class AppComponent {

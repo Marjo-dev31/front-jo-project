@@ -1,9 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Coustard:wght@400;900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-body, html {
-    height: 100%;
-}
+@import 'tailwindcss';
 
 @theme {
     --color-primary: #3d5a80;
@@ -11,5 +9,10 @@ body, html {
     --color-call-to-action: #e0fbfc;
     --color-orange: #ee6c4d;
     --color-font: #293241;
-    --font-montserrat: "Montserrat", sans-serif;
+    --font-montserrat: "Montserrat", "sans-serif";
+    --font-coustard: "Coustard", "sans-serif";
+}
+
+body, html {
+    height: 100%;
 }
