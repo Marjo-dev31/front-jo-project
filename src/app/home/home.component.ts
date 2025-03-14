@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 export class HomeComponent {
     public activeElement = signal<string>('');
     private readonly sportingEventsService = inject(SportingEventsService);
-    public events = this.sportingEventsService.events;
+    public events = signal(this.sportingEventsService.events);
 
     showMore(id: string) {
         this.activeElement.update(() => id);
