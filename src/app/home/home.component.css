@@ -23,34 +23,22 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 2rem;
-}
-
-/* .accordion {
-    
-    display: flex;
-    justify-content: space-evenly;
-    overflow: auto;
-    z-index: 1;
-}
-
-.accordion-content {
-    position: relative;
-    width: 20%;
-    height: inherit;
-    cursor: pointer;
-    transition: all 2s ease;
-}
-
-.accordion-img {
     border-radius: 3rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-   
-    object-fit: cover;
 }
 
-.accordion-content:hover {
-    width: 200%;
-} */
+@media screen and (width >= 768px) {
+    .accordion {
+        scroll-snap-type: none;
+        justify-content: space-evenly;
+        overflow: hidden;
+        gap:0
+    }
+    .accordion-content {
+        width: 20%;
+        flex: auto;
+        transition: all 2s ease;
+    }
+    .accordion-content:hover {
+        width: 200%;
+    }
+}
