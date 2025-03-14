@@ -10,6 +10,7 @@ export const routes: Routes = [
     { path: 'conditionsgeneralesdevente', component: GtcComponent },
     { path: 'erreur', component: ErrorComponent },
     { path: '', component: HomeComponent },
+    { path: 'offers', component: OfferComponent },
     { path: '**', component: HomeComponent },
     { path: 'offers', component: OfferComponent },
 ];
