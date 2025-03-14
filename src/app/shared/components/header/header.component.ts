@@ -15,6 +15,6 @@ export class HeaderComponent {
 
     showSideMenu() {
         this.isShow = !this.isShow;
-        console.log(this.isShow);
+        //a faire fermer le sidemenu quand clic sur un lien
     }
 }

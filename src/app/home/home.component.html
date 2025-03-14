@@ -67,7 +67,7 @@
         Parmi les sports les plus populaires, retrouvez :
     </h2>
     <ul class="flex flex-col justify-center items-start md:flex-row">
-        @for (event of events; track $index) {
+        @for (event of events(); track $index) {
             <li class="m-3 w-56 rounded-lg bg-secondary overflow-hidden shadow-lg shadow-cyan-900/50">
                 <img
                     class="h-60 w-full object-cover object-top"
