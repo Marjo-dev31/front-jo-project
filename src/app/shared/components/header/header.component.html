@@ -49,7 +49,7 @@
                 <li class="relative hover:cursor-pointer">
                     <a
                         class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
-                        ><span class="relative z-10">Offres</span></a
+                        ><span class="relative z-10" [routerLink]="['offers']">Offres</span></a
                     >
                 </li>
                 <li class="relative hover:cursor-pointer">
@@ -99,7 +99,7 @@
     >
         <ul class="text-center space-y-6">
             <li class="">
-                <a>Offres</a>
+                <a [routerLink]="['offers']">Offres</a>
             </li>
             <li>
                 <a>Panier</a>

@@ -1,10 +1,11 @@
 import { NgClass, TitleCasePipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { SportingEventsService } from '../shared/services/sporting-events.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-home',
-    imports: [TitleCasePipe, NgClass],
+    imports: [TitleCasePipe, NgClass, RouterLink],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
 })
