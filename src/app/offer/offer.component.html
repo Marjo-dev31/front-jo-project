@@ -7,18 +7,17 @@
     <div class="flex flex-col items-center justify-center w-3/4 gap-10">
         @for (offer of offers(); track $index) {
             <div
-                class="flex flex-col border rounded-lg overflow-hidden shadow-lg shadow-cyan-900/50 md:flex-row"
+                class="flex flex-col md:w-1/2 border rounded-lg overflow-hidden shadow-lg shadow-cyan-900/50 md:flex-row"
                 [ngClass]="{ 'md:flex-row-reverse': $index % 2 === 0 }"
-                
             >
-                <div class="md:w-2/3">
+                <div class="md:w-1/2">
                     <img
                         [src]="offer.imgUrl"
                         alt="{{ offer.title }}"
-                        class="h-60 w-full object-cover "
+                        class="h-60 w-full object-cover"
                     />
                 </div>
-                <div class="space-y-2 p-2 bg-gray-100">
+                <div class="space-y-2 p-2 bg-gray-100 md:w-1/2">
                     <h2 class="text-center text-xl font-coustard">
                         {{ offer.title | titlecase }}
                     </h2>
@@ -30,4 +29,49 @@
     </div>
 </section>
 <!-- form resa -->
-<div class="w-3/4"></div>
+<section
+    class="flex flex-col justify-center items-center p-4 text-lg relative mb-30"
+>
+    <div class="border-2 border-orange h-full absolute top-20 -z-10"></div>
+    <h1 class="text-2xl font-coustard my-10 text-center bg-gray-100">
+        Il ne vous reste plus qu'à choisir l'offre la plus adaptée pour vous:
+    </h1>
+    <form
+        (ngSubmit)="onSubmit()"
+        #form=""
+        class="flex flex-col justify-center items-center gap-2 border-2 w-96 rounded-lg p-4 backdrop-blur-md"
+    >
+        <!-- select offre -->
+
+        <label class="w-full"
+            >Choissisez une offre:
+            <select name="" id="" class="border block w-full">
+                <option value="" disabled selected>--</option>
+                @for (offer of offers(); track $index) {
+                    <option value="offer.id">{{ offer.title }}</option>
+                }
+            </select></label
+        >
+        <!-- select epreuve -->
+        <label class="w-full"
+            >Choissisez une épreuve:
+            <select name="" id="" class="border block w-full">
+                <option value="" disabled selected>--</option>
+                @for (event of sportingEvents(); track $index) {
+                    <option value="event.id">{{ event.title }}</option>
+                }
+            </select>
+        </label>
+        <!-- select quantity -->
+        <label class="w-full"
+            >Quantité:<input
+                type="number"
+                class="border block w-full"
+                min="1"
+                max="10"
+        /></label>
+        <button type="button" class="border w-1/2 p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300">
+            Ajouter au panier
+        </button>
+    </form>
+</section>

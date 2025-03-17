@@ -3,6 +3,10 @@
 
 @import 'tailwindcss';
 
+/* body, html {
+    /* height: 100%;
+} */
+
 @theme {
     --color-primary: #3d5a80;
     --color-secondary: #98c1d9;
@@ -13,6 +17,3 @@
     --font-coustard: "Coustard", "sans-serif";
 }
 
-body, html {
-    height: 100%;
-}

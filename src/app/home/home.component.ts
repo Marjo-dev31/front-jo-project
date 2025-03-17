@@ -1,6 +1,6 @@
 import { NgClass, TitleCasePipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { SportingEventsService } from '../shared/services/sporting-events.service';
+import { sportingEventService } from '../shared/services/sporting-event.service';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -11,8 +11,8 @@ import { RouterLink } from '@angular/router';
 })
 export class HomeComponent {
     public activeElement = signal<string>('');
-    private readonly sportingEventsService = inject(SportingEventsService);
-    public events = signal(this.sportingEventsService.events);
+    private readonly sportingEventService = inject(sportingEventService);
+    public events = signal(this.sportingEventService.events);
 
     showMore(id: string) {
         this.activeElement.update(() => id);
