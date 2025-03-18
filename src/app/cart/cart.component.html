@@ -1,1 +1,20 @@
-<p>cart works!</p>
+<table>
+    <thead>
+        <tr>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of cart(); track $index) {
+            <tr>
+                <th>{{ item.offerId }}</th>
+                <td>{{ item.price }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.total }}</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -39,15 +39,16 @@
     <form
         [formGroup]="form"
         class="flex flex-col justify-center items-center gap-2 border-2 w-96 rounded-lg p-4 backdrop-blur-md"
-    (ngSubmit)="onSubmit()">
+        (ngSubmit)="onSubmit()"
+    >
         <!-- select offre -->
 
         <label class="w-full"
             >Choissisez une offre:
-            <select  class="border block w-full" formControlName="offer">
+            <select class="border block w-full" formControlName="offer">
                 <option value="" disabled selected>--</option>
                 @for (offer of offers(); track $index) {
-                    <option value="offer.id" >{{ offer.title }} </option>
+                    <option value="{{ offer.id }}">{{ offer.title }}</option>
                 }
             </select></label
         >
@@ -57,7 +58,7 @@
             <select formControlName="event" class="border block w-full">
                 <option value="" disabled selected>--</option>
                 @for (event of sportingEvents(); track $index) {
-                    <option value="event.id">{{ event.title }}</option>
+                    <option value="{{ event.id }}">{{ event.title }}</option>
                 }
             </select>
         </label>
