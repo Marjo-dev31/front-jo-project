@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-footer',
-    imports: [],
+    imports: [RouterLink],
     template: `<footer class="bg-secondary text-center text-sm ">
         <div class="grid grid-cols-1 gap-5 md:grid-cols-3 md:items-center">
             <div>
@@ -38,7 +39,9 @@ import { Component } from '@angular/core';
             </div>
             <div class="flex flex-col gap-2">
                 <a href="" class="hover:underline">Nous contacter</a>
-                <a href="" class="hover:underline"
+                <a
+                    [routerLink]="['/politiquedeconfidentialite']"
+                    class="hover:underline"
                     >Politique de confidentialité - CGV</a
                 >
             </div>
