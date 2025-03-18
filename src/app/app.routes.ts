@@ -5,7 +5,8 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { GtcComponent } from './gtc/gtc.component';
 import { ErrorComponent } from './error/error.component';
 
-export const routes: Routes = [{ path: 'offers', component: OfferComponent },
+export const routes: Routes = [
+    { path: 'offers', component: OfferComponent },
     { path: 'politiquedeconfidentialite', component: PrivacyPolicyComponent },
     { path: 'conditionsgeneralesdevente', component: GtcComponent },
     { path: 'erreur', component: ErrorComponent },
