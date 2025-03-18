@@ -42,7 +42,12 @@ import { RouterLink } from '@angular/router';
                 <a
                     [routerLink]="['/politiquedeconfidentialite']"
                     class="hover:underline"
-                    >Politique de confidentialité - CGV</a
+                    >Politique de confidentialité</a
+                >
+                <a
+                    [routerLink]="['/conditionsgeneralesdevente']"
+                    class="hover:underline"
+                    >CGV</a
                 >
             </div>
         </div>
