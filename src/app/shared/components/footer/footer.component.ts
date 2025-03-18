@@ -5,14 +5,14 @@ import { RouterLink } from '@angular/router';
     selector: 'app-footer',
     imports: [RouterLink],
     template: `<footer class="bg-secondary text-center text-sm ">
-        <div class="grid grid-cols-1 gap-5 md:grid-cols-3 md:items-center">
-            <div>
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-7 md:items-center">
+            <div class="col-start-2">
                 <p class="p-2">Siège Social :</p>
                 <p>JO Entertainment</p>
                 <p>Place de la Flamme</p>
                 <p>75000 Paris</p>
             </div>
-            <div>
+            <div class="col-start-4">
                 <ul class="flex items-center justify-center gap-4">
                     <li>
                         <a href=""
@@ -37,7 +37,7 @@ import { RouterLink } from '@angular/router';
                     </li>
                 </ul>
             </div>
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col gap-2 col-start-6">
                 <a href="" class="hover:underline">Nous contacter</a>
                 <a
                     [routerLink]="['/politiquedeconfidentialite']"
