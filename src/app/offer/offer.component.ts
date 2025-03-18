@@ -10,6 +10,8 @@ import { OfferService } from '../shared/services/offer.service';
 import { sportingEventService } from '../shared/services/sporting-event.service';
 import { SportingEventInterface } from '../shared/models/sportingevent.interface';
 import { OfferInterface } from '../shared/models/offer.interface';
+import { CartService } from '../shared/services/cart.service';
+import { cartItemInterface } from '../shared/models/cart-item.interface';
 
 @Component({
     selector: 'app-offer',
@@ -20,6 +22,7 @@ import { OfferInterface } from '../shared/models/offer.interface';
 export class OfferComponent {
     private readonly offerService = inject(OfferService);
     private readonly sportingEventService = inject(sportingEventService);
+    private readonly cartService = inject(CartService);
 
     public offers = signal<OfferInterface[]>(this.offerService.offers);
     public sportingEvents = signal<SportingEventInterface[]>(
@@ -30,6 +33,7 @@ export class OfferComponent {
         offer: new FormControl('', [Validators.required]),
         event: new FormControl('', [Validators.required]),
         quantity: new FormControl('', [Validators.required]),
+        price: new FormControl(),
     });
 
     get offer() {
@@ -45,11 +49,18 @@ export class OfferComponent {
     }
 
     onSubmit() {
-        const reservation = {
-            offer: this.offer.value,
-            event: this.event.value,
+        const reservation: cartItemInterface = {
+            offerId: this.offer.value,
+            eventId: this.event.value,
             quantity: this.quantity.value,
         };
-        console.log(reservation);
+        const offerSelected = this.offers().find(
+            (el) => el.id === reservation.offerId,
+        );
+        if (offerSelected) {
+            reservation.price = offerSelected.price;
+            reservation.total = reservation.price * reservation.quantity;
+        }
+        this.cartService.addToCart(reservation);
     }
 }
