@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { OfferInterface } from '../models/offer.interface';
 
 @Injectable({
     providedIn: 'root',
 })
 export class OfferService {
-    offers = [
+    offers: OfferInterface[] = [
         {
             id: '1',
             title: 'solo',
