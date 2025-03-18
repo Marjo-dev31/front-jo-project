@@ -2,6 +2,7 @@ import { NgClass, TitleCasePipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { sportingEventService } from '../shared/services/sporting-event.service';
 import { RouterLink } from '@angular/router';
+import { SportingEventInterface } from '../shared/models/sportingevent.interface';
 
 @Component({
     selector: 'app-home',
@@ -12,7 +13,9 @@ import { RouterLink } from '@angular/router';
 export class HomeComponent {
     public activeElement = signal<string>('');
     private readonly sportingEventService = inject(sportingEventService);
-    public events = signal(this.sportingEventService.events);
+    public events = signal<SportingEventInterface[]>(
+        this.sportingEventService.events,
+    );
 
     showMore(id: string) {
         this.activeElement.update(() => id);

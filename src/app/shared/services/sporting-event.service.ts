@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { SportingEventInterface } from '../models/sportingevent.interface';
 
 @Injectable({
     providedIn: 'root',
 })
 export class sportingEventService {
-    events = [
+    events: SportingEventInterface[] = [
         {
             id: '1',
             title: 'basket-ball',

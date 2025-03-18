@@ -8,6 +8,8 @@ import {
 } from '@angular/forms';
 import { OfferService } from '../shared/services/offer.service';
 import { sportingEventService } from '../shared/services/sporting-event.service';
+import { SportingEventInterface } from '../shared/models/sportingevent.interface';
+import { OfferInterface } from '../shared/models/offer.interface';
 
 @Component({
     selector: 'app-offer',
@@ -19,8 +21,10 @@ export class OfferComponent {
     private readonly offerService = inject(OfferService);
     private readonly sportingEventService = inject(sportingEventService);
 
-    public offers = signal(this.offerService.offers);
-    public sportingEvents = signal(this.sportingEventService.events);
+    public offers = signal<OfferInterface[]>(this.offerService.offers);
+    public sportingEvents = signal<SportingEventInterface[]>(
+        this.sportingEventService.events,
+    );
 
     readonly form = new FormGroup({
         offer: new FormControl('', [Validators.required]),
@@ -41,7 +45,6 @@ export class OfferComponent {
     }
 
     onSubmit() {
-        console.log('toto');
         const reservation = {
             offer: this.offer.value,
             event: this.event.value,
