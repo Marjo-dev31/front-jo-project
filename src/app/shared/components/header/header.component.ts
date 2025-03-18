@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
     selector: 'app-header',
     imports: [RouterLink, NgStyle],
     templateUrl: './header.component.html',
-    styleUrl: './header.component.css',
+    styles: '',
 })
 export class HeaderComponent {
     isAdmin = false;
