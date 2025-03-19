@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
     selector: 'app-privacy-policy',
     imports: [],
     template: `<section class="m-10 space-y-2 text-pretty">
-        <h2 class="text-center text-3xl font-bold font-coustard">
+        <h2 class="text-center text-2xl font-bold font-coustard">
             Politique de Confidentialité
         </h2>
         <p class="text-center p-2 italic">Dernière mise à jour : 18/03/2025</p>

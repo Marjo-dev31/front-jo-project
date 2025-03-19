@@ -21,7 +21,7 @@ export class sportingEventService {
         },
         {
             id: '3',
-            title: 'escalade sportive',
+            title: 'escalade',
             description: `L'escalade sportive est une discipline moderne issue de l'escalade traditionnelle. Il existe trois disciplines différentes : le bloc, la difficulté et la vitesse. Dans chacune d'entre elles, des points d'ancrage sont fixés à un mur artificiel pour permettre la grimpe.`,
             imgUrl: '/olympia-68773_1280.jpg',
         },
