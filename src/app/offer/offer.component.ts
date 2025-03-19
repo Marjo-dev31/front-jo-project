@@ -33,7 +33,6 @@ export class OfferComponent {
         offer: new FormControl('', [Validators.required]),
         event: new FormControl('', [Validators.required]),
         quantity: new FormControl('', [Validators.required]),
-        price: new FormControl(),
     });
 
     get offer() {
@@ -48,19 +47,35 @@ export class OfferComponent {
         return this.form.get('quantity') as FormControl;
     }
 
+    getPrice() {
+        const offerSelected = this.offers().find(
+            (el) => el.id === this.offer.value,
+        );
+        if (offerSelected) {
+            return offerSelected.price;
+        }
+        return 0;
+    }
+
+    getTotalByItem() {
+        const offerSelected = this.offers().find(
+            (el) => el.id === this.offer.value,
+        );
+        if (offerSelected) {
+            return offerSelected.price * this.quantity.value;
+        }
+        return 0;
+    }
+
     onSubmit() {
         const reservation: cartItemInterface = {
             offerId: this.offer.value,
             eventId: this.event.value,
             quantity: this.quantity.value,
+            price: this.getPrice(),
+            total: this.getTotalByItem(),
         };
-        const offerSelected = this.offers().find(
-            (el) => el.id === reservation.offerId,
-        );
-        if (offerSelected) {
-            reservation.price = offerSelected.price;
-            reservation.total = reservation.price * reservation.quantity;
-        }
+
         this.cartService.addToCart(reservation);
     }
 }

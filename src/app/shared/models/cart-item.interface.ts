@@ -2,7 +2,7 @@ export interface cartItemInterface {
     id?: string;
     offerId: string;
     eventId: string;
-    price?: number;
+    price: number;
     quantity: number;
-    total?: number;
+    total: number;
 }
