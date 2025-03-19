@@ -1,20 +1,33 @@
-<table>
-    <thead>
+<h1 class="text-4xl font-coustard my-10 text-center">Mon panier</h1>
+<div class="flex justify-center items-center">
+<table class="table-auto border border-primary rounded-lg overflow-hidden shadow-lg shadow-font/50 w-3/4 text-left">
+    <thead class="bg-secondary/10">
         <tr>
-            <th>Produit</th>
-            <th>Prix</th>
-            <th>Quantité</th>
-            <th>Total</th>
+            <th class="p-4 border-b border-orange">Produit</th>
+            <th class="p-4 border-b border-orange">Prix</th>
+            <th class="p-4 border-b border-orange">Quantité</th>
+            <th class="p-4 border-b border-orange">Total</th>
         </tr>
     </thead>
     <tbody>
         @for (item of cart(); track $index) {
             <tr>
-                <th>{{ item.offerId }}</th>
-                <td>{{ item.price }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.total }}</td>
+                <th class="p-4 border-b border-primary/50">{{ item.offerId }}</th>
+                <td class="p-4 border-b border-primary/50">{{ item.price }}</td>
+                <td class="p-4 border-b border-primary/50">{{ item.quantity }}</td>
+                <td class="p-4 border-b border-primary/50">{{ item.total }}</td>
             </tr>
         }
+        <tr>
+            <th class="p-4 border-b border-primary/50">duo</th>
+            <td class="p-4 border-b border-primary/50">100</td>
+            <td class="p-4 border-b border-primary/50"><button class="px-2.5 mr-4 border rounded-full">-</button>1<button class="px-2 ml-4 border rounded-full">+</button></td>
+            <td class="p-4 border-b border-primary/50">100</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="p-4 border-b border-primary/50 text-right font-bold">Total :</td>
+            <td class="p-4 border-b border-primary/50">100</td>
+        </tr>
     </tbody>
 </table>
+</div>

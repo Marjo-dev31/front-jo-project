@@ -12,21 +12,21 @@
         </p>
         <ul class="flex flex-col justify-center">
             <li class="p-2">
-                <h2 class="font-coustard text-xl">Des <span class="text-orange">épreuves</span> inoubliables :</h2>
+                <h2 class="font-coustard text-2xl">Des <span class="text-orange">épreuves</span> inoubliables :</h2>
                 <p>
                     athlétisme, natation, gymnastique, football et bien plus
                     encore !
                 </p>
             </li>
             <li class="p-2">
-                <h2 class="font-coustard text-xl">Des billets <span class="text-orange">pour tous</span> :</h2>
+                <h2 class="font-coustard text-2xl">Des billets <span class="text-orange">pour tous</span> :</h2>
                 <p>
                     choisissez vos offres et réservez facilement en quelques
                     clics.
                 </p>
             </li>
             <li class="p-2">
-                <h2 class="font-coustard text-xl">Un événement <span class="text-orange">mondial</span> :</h2>
+                <h2 class="font-coustard text-2xl">Un événement <span class="text-orange">mondial</span> :</h2>
                 <p>vibrez avec des fans venus des quatre coins du monde.</p>
             </li>
         </ul>
@@ -63,19 +63,19 @@
     </div></div>
 </section>
 <section class="event flex flex-col justify-center items-center my-20">
-    <h2 class="w-2/3 text-center my-2 font-coustard text-xl">
+    <h2 class="w-2/3 text-center my-2 font-coustard text-2xl">
         Parmi les sports les plus populaires, retrouvez :
     </h2>
     <ul class="flex flex-col justify-center items-start md:flex-row">
         @for (event of events(); track $index) {
-            <li class="m-3 w-56 rounded-lg bg-secondary overflow-hidden shadow-lg shadow-cyan-900/50">
+            <li class="m-3 w-56 rounded-lg bg-secondary overflow-hidden shadow-lg shadow-font/50">
                 <img
                     class="h-60 w-full object-cover object-top"
                     src="{{ event.imgUrl }}"
                     alt=""
                 />
                 <div class="p-2 relative">
-                    <h2 class="text-xl font-bold font-coustard">
+                    <h2 class="text-2xl font-bold font-coustard">
                         {{ event.title | titlecase }}
                     </h2>
                     <p
