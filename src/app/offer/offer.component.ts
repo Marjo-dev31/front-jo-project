@@ -32,7 +32,11 @@ export class OfferComponent {
     readonly form = new FormGroup({
         offer: new FormControl('', [Validators.required]),
         event: new FormControl('', [Validators.required]),
-        quantity: new FormControl('', [Validators.required]),
+        quantity: new FormControl('', [
+            Validators.required,
+            Validators.min(1),
+            Validators.max(10),
+        ]),
     });
 
     get offer() {
