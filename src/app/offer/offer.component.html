@@ -3,7 +3,7 @@
     <h1 class="w-3/4 text-4xl font-coustard my-10 text-center">
         Découvrez nos offres:
     </h1>
-    <div class="border-2 border-orange h-full absolute top-20 -z-10"></div>
+    <div class="border-2 border-orange h-full absolute top-30 md:top-20 -z-10"></div>
     <div class="flex flex-col items-center justify-center w-3/4 gap-10">
         @for (offer of offers(); track $index) {
             <div
@@ -38,34 +38,40 @@
     </h1>
     <form
         [formGroup]="form"
-        class="flex flex-col justify-center items-center gap-2 border-2 w-96 rounded-lg p-4 backdrop-blur-md"
+        class="flex flex-col justify-center items-center gap-2 border-2 md:w-96 rounded-lg p-4 backdrop-blur-md"
         (ngSubmit)="onSubmit()"
     >
         <!-- select offre -->
 
         <label class="w-full"
             >Choissisez une offre:
-            <select class="border block w-full invalid:border-orange" formControlName="offer">
+            <select
+                class="border block w-full invalid:border-orange"
+                formControlName="offer"
+            >
                 <option value="" disabled selected>--</option>
                 @for (offer of offers(); track $index) {
                     <option value="{{ offer.id }}">{{ offer.title }}</option>
                 }
             </select></label
         >
-        @if(offer.errors && offer.touched){
+        @if (offer.errors && offer.touched) {
             <p class="text-sm text-orange">Veuillez sélectionner une offre</p>
         }
         <!-- select epreuve -->
         <label class="w-full"
             >Choissisez une épreuve:
-            <select formControlName="event" class="border block w-full invalid:border-orange">
+            <select
+                formControlName="event"
+                class="border block w-full invalid:border-orange"
+            >
                 <option value="" disabled selected>--</option>
                 @for (event of sportingEvents(); track $index) {
                     <option value="{{ event.id }}">{{ event.title }}</option>
                 }
             </select>
         </label>
-        @if(event.errors && event.touched){
+        @if (event.errors && event.touched) {
             <p class="text-sm text-orange">Veuillez sélectionner une épreuve</p>
         }
         <!-- select quantity -->
@@ -77,15 +83,20 @@
                 max="10"
                 formControlName="quantity"
         /></label>
-        @if(quantity.errors && quantity.touched){
-            <p class="text-sm text-orange">Veuillez sélectionner une  quantité</p>
+        @if (quantity.errors && quantity.touched) {
+            <p class="text-sm text-orange">
+                Veuillez sélectionner une quantité autorisée (entre 1 et 10)
+            </p>
         }
         <button
             type="submit"
-            class="border w-1/2 p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
+            class="border p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
             [disabled]="!form.valid"
-            >
+        >
             Ajouter au panier
         </button>
     </form>
+    @if (formIsSubmitted()) {
+        <p class="bg-gray-100 p-2 text-orange transition-all delay-100 ease-in duration-700 animate-opacity">Offre ajoutée au panier</p>
+    }
 </section>

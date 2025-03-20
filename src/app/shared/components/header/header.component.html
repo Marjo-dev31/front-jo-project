@@ -1,6 +1,6 @@
 <header>
     <nav class="flex justify-between center p-4 items-center  border-b-2 border-b-orange ">
-        <a [routerLink]="['/']" class="basis-1/3 flex justify-center">
+        <a [routerLink]="['/']" class="md:basis-1/3 flex justify-center">
             <img
                 src="/logo.webp"
                 alt="logo de la billeterie de Jeux Olympiques"
@@ -8,7 +8,7 @@
             />
         </a>
         <div
-            class="flex flex-col justify-center basis-1/3 gap-1.5 p-2 border-2 border-primary rounded-full md:hidden"
+            class="flex flex-col justify-center md:basis-1/3 gap-1.5 p-2 border-2 border-primary rounded-full md:hidden"
             (click)="showSideMenu()"
             (keyup)="showSideMenu()"
             tabindex="0"
