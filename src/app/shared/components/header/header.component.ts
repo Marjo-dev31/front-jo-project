@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -11,10 +11,10 @@ import { RouterLink } from '@angular/router';
 export class HeaderComponent {
     isAdmin = false;
     isConnected = false;
-    isShow = false;
+    isShow = signal(false);
 
     showSideMenu() {
-        this.isShow = !this.isShow;
+        this.isShow.update((value) => !value);
         //a faire fermer le sidemenu quand clic sur un lien
     }
 }
