@@ -1,4 +1,5 @@
-import { DialogRef } from '@angular/cdk/dialog';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { CurrencyPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
     FormControl,
@@ -9,12 +10,13 @@ import {
 
 @Component({
     selector: 'app-payment',
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, CurrencyPipe],
     templateUrl: './payment.component.html',
     styleUrl: './payment.component.css',
 })
 export class PaymentComponent {
     dialogRef = inject<DialogRef<string>>(DialogRef<string>);
+    data = inject(DIALOG_DATA);
 
     paymentForm = new FormGroup({
         lastname: new FormControl('', [Validators.required]),
@@ -54,5 +56,9 @@ export class PaymentComponent {
         if (this.paymentForm.valid) {
             console.log(this.paymentForm.value);
         }
+    }
+
+    close() {
+        this.dialogRef.close();
     }
 }

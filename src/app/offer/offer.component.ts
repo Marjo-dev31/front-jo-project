@@ -83,7 +83,6 @@ export class OfferComponent {
         if (this.form.valid) {
             this.cartService.addToCart(reservation);
             this.formIsSubmitted.set(true);
-            console.log(this.formIsSubmitted());
             this.form.reset();
         }
     }
