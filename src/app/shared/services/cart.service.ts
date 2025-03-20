@@ -23,4 +23,18 @@ export class CartService {
             return this.cart();
         });
     }
+
+    deleteToCart(offerId: string, eventId: string) {
+        this.cart.update((list) => {
+            const itemExist = list.find(
+                (el) => el.offerId === offerId && el.eventId === eventId,
+            );
+            const cartFiltered = list.filter(
+                (el) =>
+                    itemExist?.offerId != el.offerId &&
+                    itemExist?.eventId != el.eventId,
+            );
+            return cartFiltered;
+        });
+    }
 }
