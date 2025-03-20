@@ -41,4 +41,9 @@ export class CartComponent {
             return [...list];
         });
     }
+
+    deleteItem(offerId: string, eventId: string) {
+        this.cartService.deleteToCart(offerId, eventId);
+        console.log(this.cart());
+    }
 }
