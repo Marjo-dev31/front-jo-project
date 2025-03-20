@@ -51,11 +51,12 @@ export class CartComponent {
     }
 
     openDialog() {
-        const dialogRef = this.dialog.open<string>(PaymentComponent, {
+        this.dialog.open<string>(PaymentComponent, {
             width: '250px',
+            data: this.totalCart(),
         });
-        dialogRef.closed.subscribe((result) =>
-            console.log('the dialog was closed', result),
-        );
+        // dialogRef.closed.subscribe((result) =>
+        //     console.log('the dialog was closed', result),
+        // );
     }
 }
