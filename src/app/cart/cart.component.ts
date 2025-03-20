@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CartService } from '../shared/services/cart.service';
 
 @Component({
@@ -14,23 +14,26 @@ export class CartComponent {
         this.cartService.cart().reduce((acc, cur) => acc + cur.total, 0),
     );
 
-    cart = signal(this.cartService.cart());
+    cart = computed(() => this.cartService.cart());
 
-    decrement(id: string) {
+    decrement(offerId: string, eventId: string) {
         this.cartService.cart.update((list) => {
-            const item = list.find((el) => el.offerId === id);
+            const item = list.find(
+                (el) => el.offerId === offerId && el.eventId === eventId,
+            );
             if (item) {
                 item.quantity -= 1;
                 item.total = item.price * item.quantity;
             }
             return [...list];
         });
-        console.log(this.cartService.cart(), this.totalCart());
     }
 
-    increment(id: string) {
+    increment(offerId: string, eventId: string) {
         this.cartService.cart.update((list) => {
-            const item = list.find((el) => el.offerId === id);
+            const item = list.find(
+                (el) => el.offerId === offerId && el.eventId === eventId,
+            );
             if (item) {
                 item.quantity += 1;
                 item.total = item.price * item.quantity;
