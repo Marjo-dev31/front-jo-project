@@ -83,6 +83,7 @@
             type="submit"
             class="border w-full text-lg p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
             [disabled]="totalCart()===0"
+            (click)="openDialog()"
             >
             Valider mon panier
         </button>

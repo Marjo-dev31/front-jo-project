@@ -1,0 +1,79 @@
+<div class="bg-gray-100 border rounded-lg p-4">
+    <h2 class="text-2xl text-center font-bold border-b border-orange p-2">
+        Votre paiement
+    </h2>
+    <form
+        [formGroup]="paymentForm"
+        class="flex flex-col gap-2"
+        (ngSubmit)="onSubmit()"
+    >
+        <label
+            >Nom<input
+                type="text"
+                class="border w-full"
+                formControlName="lastname"
+        /></label>
+        @if (lastname.errors && lastname.touched) {
+            <p class="text-sm text-orange">Veuillez saisir votre nom</p>
+        }
+        <label
+            >Prénom<input
+                type="text"
+                class="border w-full"
+                formControlName="firstname"
+        /></label>
+        @if (firstname.errors && firstname.touched) {
+            <p class="text-sm text-orange">Veuillez saisir votre nom</p>
+        }
+        <label
+            >Numéro de carte bancaire<input
+                type="text"
+                inputmode="numeric"
+                class="border w-full"
+                formControlName="cardNumber"
+                maxlength="16"
+        /></label>
+        @if (cardNumber.errors && cardNumber.touched) {
+            @if (cardNumber.hasError('required')) {
+                <p class="text-sm text-orange">Veuillez saisir votre numéro de carte bancaire</p>
+            }
+            @if (cardNumber.hasError('minlength') || cardNumber.hasError('maxlength') || cardNumber.hasError('pattern')) {
+                <p class="text-sm text-orange">Le numéro doit être composé de 16 chiffres</p>
+            }
+        }
+        <label
+            >Date d'expiration<input
+                type="month"
+                min="2025-03"
+                max="2030-03"
+                class="border w-full"
+                formControlName="expiryDate"
+        /></label>
+        @if (expiryDate.errors && expiryDate.touched) {
+            <p class="text-sm text-orange">Veuillez saisir une date d'expiration</p>
+        }
+        <label
+            >Code de vérification<input
+                type="text"
+                class="border w-full"
+                formControlName="code"
+                maxlength="3"
+        /></label>
+        @if (paymentForm.invalid && code.touched) {
+            @if (code.hasError('required')) {
+                <p class="text-sm text-orange">Veuillez saisir votre code</p>
+            }
+            @if (code.hasError('minlength') || code.hasError('maxlength') || code.hasError('pattern')) {
+                <p class="text-sm text-orange">Le code doit être composé de 3 chiffres</p>
+            }
+            
+        }
+        <button
+            type="submit"
+            class="border w-full text-lg p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
+            [disabled]="paymentForm.invalid"
+            >
+            Valider
+        </button>
+    </form>
+</div>
