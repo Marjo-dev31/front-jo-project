@@ -1,5 +1,7 @@
 <header>
-    <nav class="flex justify-between center p-4 items-center  border-b-2 border-b-orange ">
+    <nav
+        class="flex justify-between center p-4 items-center border-b-2 border-b-orange"
+    >
         <a [routerLink]="['/']" class="md:basis-1/3 flex justify-center">
             <img
                 src="/logo.webp"
@@ -10,7 +12,7 @@
         <div
             class="flex flex-col justify-center md:basis-1/3 gap-1.5 p-2 border-2 border-primary rounded-full md:hidden"
             (click)="showSideMenu()"
-            (keyup)="showSideMenu()"
+            (keyup.enter)="showSideMenu()"
             tabindex="0"
         >
             <svg
@@ -20,7 +22,7 @@
                 stroke-width="1.5"
                 stroke="currentColor"
                 class="size-8"
-                [ngStyle]="{ display: isShow ? 'none' : 'flex' }"
+                [ngStyle]="{ display: isShow() ? 'none' : 'flex' }"
             >
                 <path
                     stroke-linecap="round"
@@ -35,7 +37,7 @@
                 stroke-width="1.5"
                 stroke="currentColor"
                 class="size-8"
-                [ngStyle]="{ display: isShow ? 'flex' : 'none' }"
+                [ngStyle]="{ display: isShow() ? 'flex' : 'none' }"
             >
                 <path
                     stroke-linecap="round"
@@ -47,19 +49,22 @@
         <div class="hidden md:flex basis-1/3 md:justify-center">
             <ul class="flex gap-4 *:px-3 *:py-1">
                 <li class="relative hover:cursor-pointer">
-                    <a [routerLink]="['offers']"
+                    <a
+                        [routerLink]="['offers']"
                         class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
-                        ><span class="relative z-10" >Offres</span></a
+                        ><span class="relative z-10">Offres</span></a
                     >
                 </li>
                 <li class="relative hover:cursor-pointer">
-                    <a [routerLink]="['panier']"
+                    <a
+                        [routerLink]="['panier']"
                         class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
                         ><span class="relative z-10">Panier</span></a
                     >
                 </li>
                 <!-- if connection or not -->
                 @if (isConnected) {
+                    <!-- if role admin else user -->
                     @if (isAdmin) {
                         <li class="relative hover:cursor-pointer">
                             <a
@@ -71,7 +76,9 @@
                         <li class="relative hover:cursor-pointer">
                             <a
                                 class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
-                                ><span class="relative z-10">Espace personnel</span></a
+                                ><span class="relative z-10"
+                                    >Espace personnel</span
+                                ></a
                             >
                         </li>
                     }
@@ -81,7 +88,6 @@
                             ><span class="relative z-10">Déconnexion</span></a
                         >
                     </li>
-                    <!-- if role admin else user -->
                 } @else {
                     <li class="relative hover:cursor-pointer">
                         <a
@@ -94,8 +100,12 @@
         </div>
     </nav>
     <aside
-        [ngStyle]="{ display: isShow ? 'flex' : 'none' }"
+        (click)="showSideMenu()"
+        [ngStyle]="{ display: isShow() ? 'flex' : 'none' }"
         class="justify-center bg-secondary p-10"
+        tabindex="0"
+        (keyup.enter)="showSideMenu()"
+        role="button"
     >
         <ul class="text-center space-y-6">
             <li class="">
