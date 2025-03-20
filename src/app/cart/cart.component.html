@@ -15,7 +15,7 @@
             @for (item of cart(); track $index) {
                 <tr>
                     <th class="p-4 border-b border-primary/50">
-                        {{ item.offerId }}
+                        {{ item.offerId }}:{{ item.eventId }}
                     </th>
                     <td class="p-4 border-b border-primary/50">
                         {{ item.price }}
@@ -23,7 +23,7 @@
                     <td class="p-4 border-b border-primary/50">
                         <button
                             type="button"
-                            (click)="decrement(item.offerId)"
+                            (click)="decrement(item.offerId, item.eventId)"
                             class="px-2.5 mr-4 border rounded-full"
                             [disabled]="item.quantity === 0"
                         >
@@ -31,7 +31,7 @@
                         >{{ item.quantity
                         }}<button
                             type="button"
-                            (click)="increment(item.offerId)"
+                            (click)="increment(item.offerId, item.eventId)"
                             class="px-2 ml-4 border rounded-full"
                             [disabled]="item.quantity === 10"
                         >
