@@ -1,32 +1,32 @@
 <h1 class="text-4xl font-coustard my-10 text-center">Mon panier</h1>
-<div class="flex flex-col justify-center items-center">
+<div class="flex flex-col justify-center items-center w-full mb-10">
     <table
         class="table-auto border border-primary rounded-lg overflow-hidden shadow-lg shadow-font/50 w-3/4 text-left"
     >
         <thead class="bg-secondary/10">
             <tr>
-                <th class="p-4 border-b border-orange">Produit</th>
-                <th class="p-4 border-b border-orange">Prix</th>
-                <th class="p-4 border-b border-orange">Quantité</th>
-                <th class="p-4 border-b border-orange">Total</th>
-                <th class="p-4 border-b border-orange"></th>
+                <th class="p-2 md:p-4 border-b border-orange">Offre</th>
+                <th class="p-2 md:p-4 border-b border-orange">Prix</th>
+                <th class="p-2 md:p-4 border-b border-orange">Quantité</th>
+                <th class="p-2 md:p-4 border-b border-orange">Total</th>
+                <th class="p-2 md:p-4 border-b border-orange"></th>
             </tr>
         </thead>
         <tbody>
             @for (item of cart(); track $index) {
                 <tr>
-                    <th class="p-4 border-b border-primary/50">
+                    <th class="p-2 md:p-4 border-b border-primary/50">
                         {{ item.offerId }}:{{ item.eventId }}
                     </th>
-                    <td class="p-4 border-b border-primary/50">
+                    <td class="p-2 md:p-4 border-b border-primary/50">
                         {{ item.price }}
                     </td>
-                    <td class="p-4 border-b border-primary/50">
+                    <td class="p-2 md:p-4 border-b border-primary/50 flex">
                         <button
                             type="button"
                             (click)="decrement(item.offerId, item.eventId)"
                             class="px-2.5 mr-4 border rounded-full"
-                            [disabled]="item.quantity === 0"
+                            [disabled]="item.quantity === 1"
                         >
                             -</button
                         >{{ item.quantity
@@ -39,20 +39,20 @@
                             +
                         </button>
                     </td>
-                    <td class="p-4 border-b border-primary/50">
+                    <td class="p-2 md:p-4 border-b border-primary/50">
                         {{ item.total }}
                     </td>
-                    <td class="p-4 border-b border-primary/50">
+                    <td class="border-b border-primary/50">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
-                            stroke="currentColor"
+                            stroke="darkorange"
                             class="size-6"
-                            (click)="deleteItem(item.offerId, item.eventId)"
+                            (click)="deleteItem(item)"
                             (keyup.enter)="
-                                deleteItem(item.offerId, item.eventId)
+                                deleteItem(item)
                             "
                             tabindex="0"
                         >
@@ -68,11 +68,11 @@
             <tr>
                 <td
                     colspan="3"
-                    class="p-4 border-b border-primary/50 text-right font-bold"
+                    class="p-2 md:p-4 border-b border-primary/50 text-right font-bold"
                 >
-                    Total :
+                    Total de la commande:
                 </td>
-                <td class="p-4 border-b border-primary/50">
+                <td class="p-2 md:p-4 border-b border-primary/50">
                     {{ totalCart() }}
                 </td>
             </tr>

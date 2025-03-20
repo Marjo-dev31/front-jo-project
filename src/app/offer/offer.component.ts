@@ -28,6 +28,7 @@ export class OfferComponent {
     public sportingEvents = signal<SportingEventInterface[]>(
         this.sportingEventService.events,
     );
+    public formIsSubmitted = signal<boolean>(false);
 
     readonly form = new FormGroup({
         offer: new FormControl('', [Validators.required]),
@@ -79,7 +80,11 @@ export class OfferComponent {
             price: this.getPrice(),
             total: this.getTotalByItem(),
         };
-
-        this.cartService.addToCart(reservation);
+        if (this.form.valid) {
+            this.cartService.addToCart(reservation);
+            this.formIsSubmitted.set(true);
+            console.log(this.formIsSubmitted());
+            this.form.reset();
+        }
     }
 }

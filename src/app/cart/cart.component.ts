@@ -1,5 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { CartService } from '../shared/services/cart.service';
+import { cartItemInterface } from '../shared/models/cart-item.interface';
 
 @Component({
     selector: 'app-cart',
@@ -42,8 +43,7 @@ export class CartComponent {
         });
     }
 
-    deleteItem(offerId: string, eventId: string) {
-        this.cartService.deleteToCart(offerId, eventId);
-        console.log(this.cart());
+    deleteItem(item: cartItemInterface) {
+        this.cartService.deleteToCart(item);
     }
 }

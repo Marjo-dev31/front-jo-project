@@ -3,7 +3,8 @@
 
 @import 'tailwindcss';
 
-body, html {
+body,
+html {
     height: 100%;
 }
 
@@ -13,7 +14,15 @@ body, html {
     --color-call-to-action: #e0fbfc;
     --color-orange: #ee6c4d;
     --color-font: #293241;
-    --font-montserrat: "Montserrat", "sans-serif";
-    --font-coustard: "Coustard", "sans-serif";
+    --font-montserrat: 'Montserrat', 'sans-serif';
+    --font-coustard: 'Coustard', 'sans-serif';
+    --animate-opacity: opacity 0.5s ease-in;
+    @keyframes opacity {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 100%;
+        }
+    }
 }
-
