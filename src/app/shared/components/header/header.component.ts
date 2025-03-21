@@ -9,8 +9,8 @@ import { RouterLink } from '@angular/router';
     styles: '',
 })
 export class HeaderComponent {
-    isAdmin = false;
-    isConnected = false;
+    isAdmin = true;
+    isConnected = true;
     isShow = signal(false);
 
     showSideMenu() {

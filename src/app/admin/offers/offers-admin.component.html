@@ -1,0 +1,59 @@
+<section class="border-b-2 border-orange">
+    <h2 class="text-center text-2xl font-bold font-coustard my-4">Les offres</h2>
+<div class="flex flex-col justify-center items-center w-full mb-10">
+    <table
+        class="table-auto border border-primary rounded-lg overflow-hidden shadow-lg shadow-font/50 w-3/4 text-left"
+    >
+        <thead class="bg-secondary/10">
+            <tr>
+                <th class="p-2 md:p-4 border-b border-orange">Titre</th>
+                <th class="p-2 md:p-4 border-b border-orange">Description</th>
+                <th class="p-2 md:p-4 border-b border-orange">Prix</th>
+                <th class="p-2 md:p-4 border-b border-orange">
+                    Nombre de vente
+                </th>
+                <th class="p-2 md:p-4 border-b border-orange">Photo</th>
+                <th class="p-2 md:p-4 border-b border-orange">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (offer of offers(); track $index) {
+                <tr>
+                    <th class="p-2 md:p-4 border-b border-primary/50">
+                        {{ offer.title | titlecase }}
+                    </th>
+                    <td class="p-2 md:p-4 border-b border-primary/50">
+                        {{ offer.description}}
+                    </td>
+                    <td class="p-2 md:p-4 border-b border-primary/50">
+                        {{ offer.price }}
+                    </td>
+                    <td class="p-2 md:p-4 border-b border-primary/50 text-center">
+                        {{ offer.numberOfSales }}
+                    </td>
+                    <td class="p-2 md:p-4 border-b border-primary/50">
+                        {{ offer.imgUrl }}
+                    </td>
+                    <td class="p-2 md:p-4 border-b border-primary/50 ">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="darkorange"
+                            class="size-6 mx-auto"
+                            tabindex="0"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                            />
+                        </svg>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+</section>
