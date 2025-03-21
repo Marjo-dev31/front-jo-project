@@ -12,7 +12,7 @@ export class OfferService {
             description:
                 "L'offre est valable pour une personne pour l'épreuve sélectionnée",
             price: 100,
-            numberOfSales: 0,
+            numberOfSales: 10,
             imgUrl: '/olympia-68773_1280.jpg',
         },
         {
@@ -21,7 +21,7 @@ export class OfferService {
             description:
                 "L'offre duo est valable pour une entrée pour 2 personnes pour l'épreuve sélectionnée",
             price: 175,
-            numberOfSales: 0,
+            numberOfSales: 3,
             imgUrl: '/olympia-68773_1280.jpg',
         },
         {
@@ -30,7 +30,7 @@ export class OfferService {
             description:
                 "L'offre famille est valable pour une entrée pour 4 personnes pour l'épreuve sélectionnée",
             price: 300,
-            numberOfSales: 0,
+            numberOfSales: 12,
             imgUrl: '/olympia-68773_1280.jpg',
         },
     ];
