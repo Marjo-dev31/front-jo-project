@@ -55,6 +55,11 @@ export class PaymentComponent {
     onSubmit() {
         if (this.paymentForm.valid) {
             console.log(this.paymentForm.value);
+            this.paymentForm.reset();
+            this.close();
+            alert(
+                'Merci pour votre paiement, retrouvez vos billets dans votre espace personnel.',
+            );
         }
     }
 
