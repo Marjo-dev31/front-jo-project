@@ -1,5 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { OfferInterface } from '../models/offer.interface';
+import {
+    OfferCreateInterface,
+    OfferInterface,
+} from '../models/offer.interface';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -12,5 +15,9 @@ export class OfferService {
 
     getAllOffers(): Observable<OfferInterface[]> {
         return this.http.get<OfferInterface[]>(this.url);
+    }
+
+    addOffer(newOffer: OfferCreateInterface): Observable<OfferInterface> {
+        return this.http.post<OfferInterface>(this.url, newOffer);
     }
 }

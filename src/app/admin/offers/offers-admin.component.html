@@ -1,59 +1,123 @@
 <section class="border-b-2 border-orange">
-    <h2 class="text-center text-2xl font-bold font-coustard my-4">Les offres</h2>
-<div class="flex flex-col justify-center items-center w-full mb-10">
-    <table
-        class="table-auto border border-primary rounded-lg overflow-hidden shadow-lg shadow-font/50 w-3/4 text-left"
-    >
-        <thead class="bg-secondary/10">
-            <tr>
-                <th class="p-2 md:p-4 border-b border-orange">Titre</th>
-                <th class="p-2 md:p-4 border-b border-orange">Description</th>
-                <th class="p-2 md:p-4 border-b border-orange">Prix</th>
-                <th class="p-2 md:p-4 border-b border-orange">
-                    Nombre de vente
-                </th>
-                <th class="p-2 md:p-4 border-b border-orange">Photo</th>
-                <th class="p-2 md:p-4 border-b border-orange">Supprimer</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (offer of offers(); track $index) {
+    <h2 class="text-center text-2xl font-bold font-coustard my-4">
+        Les offres
+    </h2>
+    <div class="flex flex-col justify-center items-center w-full mb-10">
+        <table
+            class="table-auto border border-primary rounded-lg overflow-hidden shadow-lg shadow-font/50 w-3/4 text-left"
+        >
+            <thead class="bg-secondary/10">
                 <tr>
-                    <th class="p-2 md:p-4 border-b border-primary/50">
-                        {{ offer.title | titlecase }}
+                    <th class="p-2 md:p-4 border-b border-orange">Titre</th>
+                    <th class="p-2 md:p-4 border-b border-orange">
+                        Description
                     </th>
-                    <td class="p-2 md:p-4 border-b border-primary/50">
-                        {{ offer.description}}
-                    </td>
-                    <td class="p-2 md:p-4 border-b border-primary/50">
-                        {{ offer.price }}
-                    </td>
-                    <td class="p-2 md:p-4 border-b border-primary/50 text-center">
-                        {{ offer.numberOfSales }}
-                    </td>
-                    <td class="p-2 md:p-4 border-b border-primary/50">
-                        {{ offer.imgUrl }}
-                    </td>
-                    <td class="p-2 md:p-4 border-b border-primary/50 ">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="darkorange"
-                            class="size-6 mx-auto"
-                            tabindex="0"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                            />
-                        </svg>
-                    </td>
+                    <th class="p-2 md:p-4 border-b border-orange">Prix</th>
+                    <th class="p-2 md:p-4 border-b border-orange">
+                        Nombre de vente
+                    </th>
+                    <th class="p-2 md:p-4 border-b border-orange">Photo</th>
+                    <th class="p-2 md:p-4 border-b border-orange">Supprimer</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @for (offer of offers(); track $index) {
+                    <tr>
+                        <th class="p-2 md:p-4 border-b border-primary/50">
+                            {{ offer.title | titlecase }}
+                        </th>
+                        <td class="p-2 md:p-4 border-b border-primary/50">
+                            {{ offer.description }}
+                        </td>
+                        <td class="p-2 md:p-4 border-b border-primary/50">
+                            {{ offer.price }}
+                        </td>
+                        <td
+                            class="p-2 md:p-4 border-b border-primary/50 text-center"
+                        >
+                            {{ offer.numberOfSales }}
+                        </td>
+                        <td class="p-2 md:p-4 border-b border-primary/50">
+                            {{ offer.imgUrl }}
+                        </td>
+                        <td class="p-2 md:p-4 border-b border-primary/50">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="darkorange"
+                                class="size-6 mx-auto"
+                                tabindex="0"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                />
+                            </svg>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="mt-10" (click)="showAddForm()"
+        (keyup.enter)="showAddForm()" tabindex="0">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="darkblue"
+                class="size-16"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+            </svg>
+        </div>
+    </div>
+</section>
+<section
+    class="flex justify-center flex-col items-center"
+    [ngStyle]="{ 'display': addFormIsShow() ? 'flex' : 'none' }"
+>
+    <h3 class="w-96 text-center font-bold text-xl font-coustard">
+        Ajouter une offre:
+    </h3>
+    <form
+        class="flex flex-col justify-center items-center gap-2 border-2 md:w-96 rounded-lg p-4"
+    >
+        <label class="w-full"
+            >Titre: <input class="border w-full bg-secondary/10" type="text"
+        /></label>
+        <label class="w-full"
+            >Description:
+            <textarea
+                class="border w-full bg-secondary/10"
+                type="text"
+                row="5"
+            ></textarea>
+        </label>
+        <label class="w-full"
+            >Prix: <input class="border w-full bg-secondary/10" type="text"
+        /></label>
+        <label class="w-full"
+            >Photo: <input class="border w-full bg-secondary/10" type="file"
+        /></label>
+        <button
+            type="submit"
+            class="border p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
+            [disabled]=""
+        >
+            Ajouter
+        </button>
+        <button
+            class="border p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
+        >
+            Annuler
+        </button>
+    </form>
 </section>
