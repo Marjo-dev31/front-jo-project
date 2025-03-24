@@ -1,7 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { sportingEventService } from '../../shared/services/sporting-event.service';
-import { SportingEventInterface } from '../../shared/models/sportingevent.interface';
 import { TitleCasePipe } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-event-admin',
@@ -12,7 +12,5 @@ import { TitleCasePipe } from '@angular/common';
 export class EventAdminComponent {
     private readonly sportingEventService = inject(sportingEventService);
 
-    sportingEvents = signal<SportingEventInterface[]>(
-        this.sportingEventService.events,
-    );
+    sportingEvents = toSignal(this.sportingEventService.getAllSportingEvents());
 }
