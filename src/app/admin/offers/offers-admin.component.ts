@@ -1,7 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { OfferService } from '../../shared/services/offer.service';
-import { OfferInterface } from '../../shared/models/offer.interface';
 import { TitleCasePipe } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-offer-admin',
@@ -12,5 +12,5 @@ import { TitleCasePipe } from '@angular/common';
 export class OfferAdminComponent {
     private readonly offerService = inject(OfferService);
 
-    public offers = signal<OfferInterface[]>(this.offerService.offers);
+    public offers = toSignal(this.offerService.getAllOffers());
 }

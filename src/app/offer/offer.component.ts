@@ -8,10 +8,9 @@ import {
 } from '@angular/forms';
 import { OfferService } from '../shared/services/offer.service';
 import { sportingEventService } from '../shared/services/sporting-event.service';
-import { SportingEventInterface } from '../shared/models/sportingevent.interface';
-import { OfferInterface } from '../shared/models/offer.interface';
 import { CartService } from '../shared/services/cart.service';
 import { cartItemInterface } from '../shared/models/cart-item.interface';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-offer',
@@ -24,9 +23,9 @@ export class OfferComponent {
     private readonly sportingEventService = inject(sportingEventService);
     private readonly cartService = inject(CartService);
 
-    public offers = signal<OfferInterface[]>(this.offerService.offers);
-    public sportingEvents = signal<SportingEventInterface[]>(
-        this.sportingEventService.events,
+    public offers = toSignal(this.offerService.getAllOffers());
+    public sportingEvents = toSignal(
+        this.sportingEventService.getAllSportingEvents(),
     );
     public formIsSubmitted = signal<boolean>(false);
 
@@ -53,7 +52,7 @@ export class OfferComponent {
     }
 
     getPrice() {
-        const offerSelected = this.offers().find(
+        const offerSelected = this.offers()?.find(
             (el) => el.id === this.offer.value,
         );
         if (offerSelected) {
@@ -63,7 +62,7 @@ export class OfferComponent {
     }
 
     getTotalByItem() {
-        const offerSelected = this.offers().find(
+        const offerSelected = this.offers()?.find(
             (el) => el.id === this.offer.value,
         );
         if (offerSelected) {
