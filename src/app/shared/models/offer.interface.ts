@@ -3,7 +3,7 @@ export interface OfferCreateInterface {
     description: string;
     price: number;
     numberOfSales: number;
-    imgUrl: string;
+    imgUrl?: string;
 }
 
 export interface OfferInterface extends OfferCreateInterface {
