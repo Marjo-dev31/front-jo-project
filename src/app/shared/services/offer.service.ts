@@ -20,4 +20,16 @@ export class OfferService {
     addOffer(newOffer: OfferCreateInterface): Observable<OfferInterface> {
         return this.http.post<OfferInterface>(this.url, newOffer);
     }
+
+    updateOffer(offer: OfferInterface) {
+        return this.http.patch(`${this.url}/${offer.id}`, offer);
+    }
+
+    addImage(form: FormData) {
+        return this.http.post(`${this.url}/upload`, form);
+    }
+
+    deleteOffer(id: string) {
+        return this.http.delete(`${this.url}/${id}`);
+    }
 }

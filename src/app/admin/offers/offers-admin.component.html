@@ -17,7 +17,7 @@
                         Nombre de vente
                     </th>
                     <th class="p-2 md:p-4 border-b border-orange">Photo</th>
-                    <th class="p-2 md:p-4 border-b border-orange">Supprimer</th>
+                    <th class="p-2 md:p-4 border-b border-orange">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,83 +41,171 @@
                             {{ offer.imgUrl }}
                         </td>
                         <td class="p-2 md:p-4 border-b border-primary/50">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="darkorange"
-                                class="size-6 mx-auto"
-                                tabindex="0"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                                />
-                            </svg>
+                            <div class="flex justify-between">
+                                <abbr title="Modifier">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="currentColor"
+                                        class="size-6"
+                                        (click)="showEditForm(offer)"
+                                        (keyup.enter)="showEditForm(offer)"
+                                        tabindex="0"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+                                        />
+                                    </svg>
+                                </abbr>
+                                <abbr title="Supprimer">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="darkorange"
+                                        class="size-6"
+                                        tabindex="0"
+                                        (click)="deleteOffer(offer.id)"
+                                        (keyup.enter)="deleteOffer(offer.id)"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                        />
+                                    </svg>
+                                </abbr>
+                            </div>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-        <div class="mt-10" (click)="showAddForm()"
-        (keyup.enter)="showAddForm()" tabindex="0">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="darkblue"
-                class="size-16"
+        @if (!addFormIsShow()) {
+            <div
+                class="mt-10"
+                (click)="showAddForm()"
+                (keyup.enter)="showAddForm()"
+                tabindex="0"
             >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                />
-            </svg>
-        </div>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="darkblue"
+                    class="size-16"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                    />
+                </svg>
+            </div>
+        } @else {
+            <div
+                class="mt-10"
+                (click)="showAddForm()"
+                (keyup.enter)="showAddForm()"
+                tabindex="0"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-16"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                    />
+                </svg>
+            </div>
+        }
     </div>
 </section>
 <section
-    class="flex justify-center flex-col items-center"
+    class="flex justify-center flex-col items-center border-b-2 border-orange"
     [ngStyle]="{ 'display': addFormIsShow() ? 'flex' : 'none' }"
 >
-    <h3 class="w-96 text-center font-bold text-xl font-coustard">
-        Ajouter une offre:
+    <h3 class="w-96 text-center font-bold text-xl font-coustard mt-10">
+        Ajouter/Modifier une offre:
     </h3>
     <form
-        class="flex flex-col justify-center items-center gap-2 border-2 md:w-96 rounded-lg p-4"
+        class="flex flex-col justify-center items-center gap-2 border-2 md:w-96 rounded-lg p-4 mb-10"
+        [formGroup]="addForm"
+        (ngSubmit)="onSubmit()"
     >
         <label class="w-full"
-            >Titre: <input class="border w-full bg-secondary/10" type="text"
+            >Titre:
+            <input
+                class="border w-full bg-secondary/10"
+                type="text"
+                formControlName="title"
         /></label>
+        @if (title.errors && title.touched) {
+            <span class="text-sm text-orange">Veuillez saisir un titre</span>
+        }
         <label class="w-full"
             >Description:
             <textarea
                 class="border w-full bg-secondary/10"
                 type="text"
                 row="5"
+                formControlName="description"
             ></textarea>
         </label>
+        @if (description.errors && description.touched) {
+            <span class="text-sm text-orange"
+                >Veuillez saisir une description</span
+            >
+        }
         <label class="w-full"
-            >Prix: <input class="border w-full bg-secondary/10" type="text"
+            >Prix:
+            <input
+                class="border w-full bg-secondary/10"
+                type="text"
+                formControlName="price"
         /></label>
+        @if (price.errors && price.touched) {
+            <span class="text-sm text-orange">Veuillez saisir un prix</span>
+        }
         <label class="w-full"
-            >Photo: <input class="border w-full bg-secondary/10" type="file"
+            >Photo:
+            <input
+                class="border w-full bg-secondary/10"
+                type="file"
+                formControlName="imgUrl"
+                (change)="onFileSelected($event)"
         /></label>
-        <button
-            type="submit"
-            class="border p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
-            [disabled]=""
-        >
-            Ajouter
-        </button>
-        <button
-            class="border p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
-        >
-            Annuler
-        </button>
+        @if (imgUrl.errors && imgUrl.touched) {
+            <span class="text-sm text-orange">Veuillez choisir une photo</span>
+        }
+        <div class="space-x-6">
+            <button
+                type="submit"
+                class="border p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
+                [disabled]="addForm.invalid"
+            >
+                Valider
+            </button>
+            <button
+                class="border p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
+            >
+                Annuler
+            </button>
+        </div>
     </form>
+    @if (formIsSubmitted()) {
+        <p class="bg-gray-100 p-2 text-orange transition-all delay-100 ease-in duration-700 animate-opacity">Nouvelle offre créée</p>
+    }
 </section>
