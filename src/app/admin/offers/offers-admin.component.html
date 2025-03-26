@@ -1,4 +1,4 @@
-<section class="border-b-2 border-orange">
+<section class="border-b-2 border-orange pl-64">
     <h2 class="text-center text-2xl font-bold font-coustard my-4">
         Les offres
     </h2>
@@ -134,7 +134,7 @@
     </div>
 </section>
 <section
-    class="flex justify-center flex-col items-center border-b-2 border-orange"
+    class="flex justify-center flex-col items-center border-b-2 border-orange pl-64"
     [ngStyle]="{ 'display': addFormIsShow() ? 'flex' : 'none' }"
 >
     <h3 class="w-96 text-center font-bold text-xl font-coustard mt-10">
@@ -199,6 +199,7 @@
                 Valider
             </button>
             <button
+            type="reset"
                 class="border p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
             >
                 Annuler
