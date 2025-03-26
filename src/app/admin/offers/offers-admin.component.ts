@@ -30,7 +30,10 @@ export class OfferAdminComponent {
     addForm = new FormGroup({
         title: new FormControl('', [Validators.required]),
         description: new FormControl('', [Validators.required]),
-        price: new FormControl(0, [Validators.required]),
+        price: new FormControl(0, [
+            Validators.required,
+            Validators.pattern(/^[0-9]\d*$/),
+        ]),
         numberOfSales: new FormControl(0),
         imgUrl: new FormControl(null, [Validators.required]),
     });
@@ -40,10 +43,21 @@ export class OfferAdminComponent {
         this.addForm.reset();
     }
 
+    showEditForm(offer: OfferInterface) {
+        this.addFormIsShow.set(true);
+        this.addForm.patchValue({
+            title: offer.title,
+            description: offer.description,
+            price: offer.price,
+            numberOfSales: offer.numberOfSales,
+        });
+    }
+
     onSubmit() {
         const formData = new FormData();
         formData.append('file', this.selectedFile as Blob);
         this.offerService.addImage(formData).subscribe();
+
         const imgUrl = this.imgUrl.value.split(`\\`).slice(-1);
 
         const newOffer: OfferCreateInterface = {
@@ -67,16 +81,6 @@ export class OfferAdminComponent {
         }
         this.formIsSubmitted.set(true);
         this.addForm.reset();
-    }
-
-    showEditForm(offer: OfferInterface) {
-        this.addFormIsShow.set(true);
-        this.addForm.patchValue({
-            title: offer.title,
-            description: offer.description,
-            price: offer.price,
-            numberOfSales: offer.numberOfSales,
-        });
     }
 
     onFileSelected(event: Event) {

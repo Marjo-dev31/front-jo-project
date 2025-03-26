@@ -177,8 +177,14 @@
                 formControlName="price"
         /></label>
         @if (price.errors && price.touched) {
-            <span class="text-sm text-orange">Veuillez saisir un prix</span>
+            @if(price.hasError('required')){
+                <span class="text-sm text-orange">Veuillez saisir un prix</span>
         }
+            }
+            @if(price.hasError('pattern')){
+                <span class="text-sm text-orange">Le prix doit être uniquement en chiffre</span>
+            }
+            
         <label class="w-full"
             >Photo:
             <input
