@@ -21,15 +21,18 @@ export class OfferService {
         return this.http.post<OfferInterface>(this.url, newOffer);
     }
 
-    updateOffer(offer: OfferInterface) {
-        return this.http.patch(`${this.url}/${offer.id}`, offer);
+    updateOffer(offer: OfferInterface): Observable<OfferInterface> {
+        return this.http.patch<OfferInterface>(
+            `${this.url}/${offer.id}`,
+            offer,
+        );
     }
 
     addImage(form: FormData) {
         return this.http.post(`${this.url}/upload`, form);
     }
 
-    deleteOffer(id: string) {
-        return this.http.delete(`${this.url}/${id}`);
+    deleteOffer(id: string): Observable<OfferInterface> {
+        return this.http.delete<OfferInterface>(`${this.url}/${id}`);
     }
 }
