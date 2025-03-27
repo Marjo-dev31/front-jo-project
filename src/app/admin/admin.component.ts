@@ -56,7 +56,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
                         (keyup.enter)="showSidenav()"
                         tabindex="0"
                         [ngStyle]="{
-                            display: sidenavIsVisible() ? 'none' : 'flex',
+                            display: sidenavIsVisible() ? 'none' : 'block',
                         }"
                     >
                         <path
@@ -93,7 +93,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     styles: ``,
 })
 export class AdminComponent {
-    public sidenavIsVisible = signal(false);
+    public sidenavIsVisible = signal(true);
 
     showSidenav() {
         this.sidenavIsVisible.update((value) => !value);
