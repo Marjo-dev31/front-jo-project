@@ -60,6 +60,9 @@
                         [routerLink]="['panier']"
                         class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
                         ><span class="relative z-10">Panier</span></a
+                    ><span
+                        class="rounded-full bg-primary text-gray-100 absolute px-2 py-0.5 -top-3 text-center"
+                        >{{ cartLength() }}</span
                     >
                 </li>
                 <!-- if connection or not -->
@@ -67,7 +70,8 @@
                     <!-- if role admin else user -->
                     @if (isAdmin) {
                         <li class="relative hover:cursor-pointer">
-                            <a [routerLink]="['backoffice']"
+                            <a
+                                [routerLink]="['backoffice']"
                                 class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
                                 ><span class="relative z-10">Dashboard</span></a
                             >
@@ -111,8 +115,12 @@
             <li class="">
                 <a [routerLink]="['offers']">Offres</a>
             </li>
-            <li>
-                <a [routerLink]="['panier']">Panier</a>
+            <li class="relative">
+                <a [routerLink]="['panier']">Panier</a
+                ><span
+                class="rounded-full bg-primary text-gray-100 absolute px-2 py-0.5 -top-3 text-center"
+                >{{ cartLength() }}</span
+            >
             </li>
             <!-- if connection or not -->
             @if (isConnected) {

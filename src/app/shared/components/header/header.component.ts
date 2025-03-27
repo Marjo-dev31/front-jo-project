@@ -1,6 +1,7 @@
 import { NgStyle } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
     selector: 'app-header',
@@ -9,9 +10,15 @@ import { RouterLink } from '@angular/router';
     styles: '',
 })
 export class HeaderComponent {
+    private readonly cartService = inject(CartService);
+
     isAdmin = true;
     isConnected = true;
     isShow = signal(false);
+
+    cartLength = computed(() =>
+        this.cartService.cart().reduce((acc, cur) => acc + cur.quantity, 0),
+    );
 
     showSideMenu() {
         this.isShow.update((value) => !value);

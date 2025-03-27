@@ -2,17 +2,17 @@
 @if(totalCart() === 0){
      <span class="text-center block p-4 text-orange text-lg">Votre panier est vide</span>
 }
-<div class="flex flex-col justify-center items-center w-full mb-10">
+<div class="flex flex-col justify-center items-center w-full mb-10 overflow-auto">
     <table
-        class="table-auto border border-primary rounded-lg overflow-hidden shadow-lg shadow-font/50 w-3/4 text-left"
+        class="table-auto border border-primary rounded-lg shadow-lg shadow-font/50 w-3/4 text-left"
     >
         <thead class="bg-secondary/10">
             <tr>
-                <th class="p-2 md:p-4 border-b border-orange">Offre</th>
-                <th class="p-2 md:p-4 border-b border-orange">Prix</th>
-                <th class="p-2 md:p-4 border-b border-orange">Quantité</th>
-                <th class="p-2 md:p-4 border-b border-orange">Total</th>
-                <th class="p-2 md:p-4 border-b border-orange"></th>
+                <th class="p-2 md:p-4 border-b border-orange tracking-wide">Offre</th>
+                <th class="p-2 md:p-4 border-b border-orange tracking-wide">Prix Unitaire</th>
+                <th class="p-2 md:p-4 border-b border-orange tracking-wide">Quantité</th>
+                <th class="p-2 md:p-4 border-b border-orange tracking-wide">Total</th>
+                <th class="p-2 md:p-4 border-b border-orange "></th>
             </tr>
         </thead>
         <tbody>
@@ -46,6 +46,7 @@
                         {{ item.total }}
                     </td>
                     <td class="p2 md:p-4 border-b border-primary/50">
+                        <abbr title="Supprimer">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -64,7 +65,7 @@
                                 stroke-linejoin="round"
                                 d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                             />
-                        </svg>
+                        </svg></abbr>
                     </td>
                 </tr>
             }
