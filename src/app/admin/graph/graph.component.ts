@@ -59,6 +59,8 @@ export class GraphComponent implements OnInit {
                                 ],
                             },
                             options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
                                 scales: {
                                     y: {
                                         beginAtZero: true,
