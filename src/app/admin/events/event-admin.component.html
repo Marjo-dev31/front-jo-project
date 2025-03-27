@@ -1,25 +1,25 @@
-<section class="border-b-2 border-orange pl-64">
+<section class="border-b-2 border-orange md:pl-64">
     <h2 class="text-center text-2xl font-bold font-coustard my-4">
         Les épreuves
     </h2>
-    <div class="flex flex-col justify-center items-center w-full mb-10">
+    <div class="flex flex-col justify-center md:items-center w-full mb-10 overflow-auto">
         <table
-            class="table-auto border border-primary rounded-lg overflow-hidden shadow-lg shadow-font/50 w-3/4 text-left"
+            class="border border-primary rounded-lg shadow-lg shadow-font/50 md:w-3/4 md:text-left text-center"
         >
             <thead class="bg-secondary/10">
                 <tr>
-                    <th class="p-2 md:p-4 border-b border-orange">Titre</th>
-                    <th class="p-2 md:p-4 border-b border-orange">
+                    <th class="p-2 md:p-4 border-b border-orange tracking-wide">Titre</th>
+                    <th class="p-2 md:p-4 border-b border-orange tracking-wide">
                         Description
                     </th>
-                    <th class="p-2 md:p-4 border-b border-orange">Photo</th>
-                    <th class="p-2 md:p-4 border-b border-orange">Supprimer</th>
+                    <th class="p-2 md:p-4 border-b border-orange tracking-wide">Photo</th>
+                    <th class="p-2 md:p-4 border-b border-orange tracking-wide">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @for (sportingEvent of sportingEvents(); track $index) {
                     <tr>
-                        <th class="p-2 md:p-4 border-b border-primary/50">
+                        <th class="p-2 md:p-4 border-b border-primary/50 align-text-top ">
                             {{ sportingEvent.title | titlecase }}
                         </th>
                         <td class="p-2 md:p-4 border-b border-primary/50">
@@ -126,7 +126,7 @@
     </div>
 </section>
 <section
-    class="flex justify-center flex-col items-center border-b-2 border-orange pl-64"
+    class="flex justify-center flex-col items-center border-b-2 border-orange md:pl-64"
     [ngStyle]="{ 'display': addFormIsShow() ? 'flex' : 'none' }"
 >
     <h3 class="w-96 text-center font-bold text-xl font-coustard mt-10">
