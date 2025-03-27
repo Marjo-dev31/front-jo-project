@@ -44,7 +44,17 @@ export class GraphComponent implements OnInit {
                                     {
                                         label: 'Nombre de ventes par offres',
                                         data: n,
-                                        backgroundColor: '#3d5a80',
+                                        backgroundColor: [
+                                            'rgba(61, 90, 128, 0.2)',
+                                            'rgba(152, 193, 217, 0.2)',
+                                            'rgba(238, 108, 77, 0.2)',
+                                        ],
+                                        borderColor: [
+                                            'rgb(61, 90, 128)',
+                                            'rgb(152, 193, 217)',
+                                            'rgb(238, 108, 77)',
+                                        ],
+                                        borderWidth: 1,
                                     },
                                 ],
                             },
