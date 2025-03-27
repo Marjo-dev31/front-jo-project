@@ -54,6 +54,7 @@ export class PaymentComponent {
 
     onSubmit() {
         if (this.paymentForm.valid) {
+            // send card in service to create an order in api
             console.log(this.paymentForm.value);
             this.paymentForm.reset();
             this.close();
