@@ -8,7 +8,6 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     template: `<h1 class="text-4xl font-coustard my-10 text-center">
             Bienvenue sur votre espace administrateur
         </h1>
-
         <div class="relative">
             <div
                 class="w-64 h-96 bg-primary text-secondary absolute delay-150 duration-200"
@@ -88,12 +87,11 @@ import { RouterLink, RouterOutlet } from '@angular/router';
                 </div>
             </div>
         </div>
-
-        <router-outlet class=""></router-outlet>`,
+        <router-outlet></router-outlet>`,
     styles: ``,
 })
 export class AdminComponent {
-    public sidenavIsVisible = signal(true);
+    sidenavIsVisible = signal(true);
 
     showSidenav() {
         this.sidenavIsVisible.update((value) => !value);
