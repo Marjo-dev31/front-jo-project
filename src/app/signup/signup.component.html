@@ -1,0 +1,83 @@
+<section class="flex flex-col justify-center items-center text-lg my-10">
+    <div class="flex shadow-lg shadow-font/50 mt-20">
+        <form
+            class="flex flex-col p-4 justify-evenly items-center gap-2 md:w-96 border-2 border-primary"
+        >
+            <h1 class="text-4xl font-coustard text-center">S'inscrire</h1>
+            <label class="w-full"
+                >Nom<input
+                    type="text"
+                    class="border block w-full invalid:border-orange"
+            /></label>
+            <label class="w-full"
+                >Prénom<input
+                    type="text"
+                    class="border block w-full invalid:border-orange"
+            /></label>
+            <label class="w-full"
+                >Mail<input
+                    type="text"
+                    class="border block w-full invalid:border-orange"
+            /></label>
+            <label class="w-full"
+                >Nom d'utilisateur<input
+                    type="text"
+                    class="border block w-full invalid:border-orange"
+                    disabled
+            /></label>
+            <label class="w-full"
+                >Mot de passe<input
+                    type="password"
+                    class="border block w-full invalid:border-orange"
+            /></label>
+            <label class="w-full"
+                >Confirmer mot de passe<input
+                    type="password"
+                    class="border block w-full invalid:border-orange"
+            /></label>
+            <button
+                class="border p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
+            >
+                S'inscrire
+            </button>
+        </form>
+        <div
+            class=" grid grid-cols-2 grid-rows-3 place-items-center border-2 border-primary overflow-hidden bg-gray-100"
+        >
+            <div class="rounded-l-full bg-secondary h-50 w-full"></div>
+            <div class="size-32 border-8 border-font box-content bg-font rotate-45"></div>
+            <div class="border-[20px] border-orange size-full"></div>
+            <div class="bg-primary size-full rounded-full"></div>
+            <div
+                class="size-full rounded-l-full rounded-t-full bg-orange"
+            ></div>
+            <div
+                class="w-0 h-0 border-l-[100px] border-l-transparent border-b-[200px] border-b-secondary border-r-[100px] border-r-transparent"
+            ></div>
+
+
+            <!-- <div class="w-full relative">
+                <div class="absolute bottom-0 w-14 h-2/3 bg-font"></div> -->
+
+            <!-- <div
+                    class="bg-secondary absolute top-0 right-0 size-28 rounded-bl-full border-b-4 border-orange"
+                ></div> -->
+
+            <!-- <div
+                    class="bg-secondary size-50 absolute left-1/3 bottom-0 rounded-full"
+                ></div>
+            </div> -->
+        </div>
+    </div>
+    <div class="text-center pt-2">
+        <h3 class="text-sm">
+            Vous êtes déjà inscrit ?
+            <a
+                [routerLink]="['/login']"
+                routerLinkActive="router-link-active"
+                class="underline italic hover:cursor-pointer"
+                >Cliquez-ici</a
+            >
+        </h3>
+    </div>
+</section>
