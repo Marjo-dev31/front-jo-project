@@ -60,8 +60,10 @@
                         [routerLink]="['panier']"
                         class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
                         ><span class="relative z-10">Panier</span></a
-                    ><span
+                    >
+                    <span
                         class="rounded-full bg-primary text-gray-100 absolute px-2 py-0.5 -top-3 text-center"
+                        [ngClass]="{ 'hidden': cartLength() <= 0 }"
                         >{{ cartLength() }}</span
                     >
                 </li>
@@ -95,6 +97,7 @@
                 } @else {
                     <li class="relative hover:cursor-pointer">
                         <a
+                            [routerLink]="['/login']"
                             class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
                             ><span class="relative z-10">Se connecter</span></a
                         >
@@ -118,9 +121,10 @@
             <li class="relative">
                 <a [routerLink]="['panier']">Panier</a
                 ><span
-                class="rounded-full bg-primary text-gray-100 absolute px-2 py-0.5 -top-3 text-center"
-                >{{ cartLength() }}</span
-            >
+                    class="rounded-full bg-primary text-gray-100 absolute px-2 py-0.25 -top-3 text-center"
+                    [ngClass]="{ 'hidden': cartLength() <= 0 }"
+                    >{{ cartLength() }}</span
+                >
             </li>
             <!-- if connection or not -->
             @if (isConnected) {
@@ -139,7 +143,7 @@
                 }
             } @else {
                 <li>
-                    <a>Se connecter</a>
+                    <a [routerLink]="['/login']">Se connecter</a>
                 </li>
             }
         </ul>

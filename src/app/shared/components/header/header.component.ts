@@ -1,11 +1,11 @@
-import { NgStyle } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 
 @Component({
     selector: 'app-header',
-    imports: [RouterLink, NgStyle],
+    imports: [RouterLink, NgStyle, NgClass],
     templateUrl: './header.component.html',
     styles: '',
 })
@@ -13,7 +13,7 @@ export class HeaderComponent {
     private readonly cartService = inject(CartService);
 
     isAdmin = true;
-    isConnected = true;
+    isConnected = false;
     isShow = signal(false);
 
     cartLength = computed(() =>

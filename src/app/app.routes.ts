@@ -9,8 +9,10 @@ import { AdminComponent } from './admin/admin.component';
 import { OfferAdminComponent } from './admin/offers/offers-admin.component';
 import { EventAdminComponent } from './admin/events/event-admin.component';
 import { GraphComponent } from './admin/graph/graph.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
+    { path: 'login', component: LoginComponent },
     { path: 'panier', component: CartComponent },
     { path: 'offers', component: OfferComponent },
     {
