@@ -1,6 +1,8 @@
 <section class="flex flex-col justify-center items-center text-lg my-10">
     <div class="grid grid-cols-2 gap-0 h-96 shadow-lg shadow-font/50 mt-20">
         <form
+            [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()"
             class="relative flex flex-col p-4 justify-evenly items-center gap-2 md:w-96 border-2 border-primary"
         >
             <h1 class="text-4xl font-coustard text-center">Se connecter</h1>
@@ -8,13 +10,26 @@
                 >Nom d'utilisateur<input
                     type="text"
                     class="border block w-full invalid:border-orange"
+                    formControlName="userName"
             /></label>
+            @if (userName.errors && userName.touched) {
+                <span class="text-sm text-orange"
+                    >Veuillez saisir votre nom d'utilisateur</span
+                >
+            }
             <label class="w-full"
                 >Mot de passe<input
-                    type="text"
+                    type="password"
                     class="border block w-full invalid:border-orange"
+                    formControlName="password"
             /></label>
+            @if (password.errors && password.touched) {
+                <span class="text-sm text-orange"
+                    >Veuillez saisir votre mot de passe</span
+                >
+            }
             <button
+                [disabled]="loginForm.invalid"
                 class="border p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
             >
                 Se connecter
@@ -43,7 +58,12 @@
     <div class="text-center pt-2">
         <h3 class="text-sm">
             Vous n'êtes pas encore inscrit ?
-            <a [routerLink]="['/signup']" routerLinkActive="router-link-active"  class="underline italic hover:cursor-pointer">Cliquez-ici</a>
+            <a
+                [routerLink]="['/signup']"
+                routerLinkActive="router-link-active"
+                class="underline italic hover:cursor-pointer"
+                >Cliquez-ici</a
+            >
         </h3>
         <span class=""
             ><a class="text-sm italic -bottom-7 -right-1"
