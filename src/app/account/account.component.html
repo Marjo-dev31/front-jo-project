@@ -1,0 +1,52 @@
+<section
+    class="flex flex-col justify-center items-center border-b-2 border-b-orange"
+>
+    <h1 class="text-4xl font-coustard my-10 text-center">Mon compte</h1>
+    <div class="w-1/2">
+        <form class="flex flex-col items-center">
+            <fieldset class="border flex flex-col p-4 w-full">
+                <legend class="p-2 text-2xl font-bold font-coustard">
+                    Mes informations personnelles:
+                </legend>
+                <label class="p-2"
+                    >Nom:<input
+                        type="text"
+                        class="border border-secondary ml-2"
+                /></label>
+                <label class="p-2"
+                    >Prénom:<input
+                        type="text"
+                        class="border border-secondary ml-2"
+                /></label>
+                <label class="p-2"
+                    >Mail:<input
+                        type="mail"
+                        class="border border-secondary ml-2"
+                /></label>
+                <label class="p-2"
+                    >Nom d'utilisateur:<input
+                        type="text"
+                        class="border border-secondary ml-2"
+                /></label>
+                <label class="p-2"
+                    >Nouveau mot de passe:<input
+                        type="password"
+                        class="border border-secondary ml-2"
+                /></label>
+            </fieldset>
+            <button
+                class="w-1/2 border p-1 rounded-lg mt-4 mb-10 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
+            >
+                Modifier
+            </button>
+        </form>
+    </div>
+</section>
+<section>
+    <h2 class="text-center text-2xl font-bold font-coustard my-4">Mon historique:</h2>
+    <ul>
+        <!-- @for (let ticket of tickets; track: $index) {
+            <li></li>
+        } -->
+    </ul>
+</section>

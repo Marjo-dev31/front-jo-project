@@ -12,8 +12,8 @@ import { CartService } from '../../services/cart.service';
 export class HeaderComponent {
     private readonly cartService = inject(CartService);
 
-    isAdmin = true;
-    isConnected = false;
+    isAdmin = false;
+    isConnected = true;
     isShow = signal(false);
 
     cartLength = computed(() =>
