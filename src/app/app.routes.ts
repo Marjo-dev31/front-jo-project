@@ -11,12 +11,14 @@ import { EventAdminComponent } from './admin/events/event-admin.component';
 import { GraphComponent } from './admin/graph/graph.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { AccountComponent } from './account/account.component';
 
 export const routes: Routes = [
     { path: 'panier', component: CartComponent },
     { path: 'offers', component: OfferComponent },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
+    { path: 'espacepersonnel', component: AccountComponent },
     {
         path: 'backoffice',
         component: AdminComponent,

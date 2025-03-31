@@ -81,6 +81,7 @@
                     } @else {
                         <li class="relative hover:cursor-pointer">
                             <a
+                            [routerLink]="['espacepersonnel']"
                                 class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
                                 ><span class="relative z-10"
                                     >Espace personnel</span
@@ -97,7 +98,7 @@
                 } @else {
                     <li class="relative hover:cursor-pointer">
                         <a
-                            [routerLink]="['/login']"
+                            [routerLink]="['login']"
                             class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
                             ><span class="relative z-10">Se connecter</span></a
                         >
@@ -143,7 +144,7 @@
                 }
             } @else {
                 <li>
-                    <a [routerLink]="['/login']">Se connecter</a>
+                    <a [routerLink]="['login']">Se connecter</a>
                 </li>
             }
         </ul>
