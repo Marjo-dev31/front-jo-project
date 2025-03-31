@@ -1,6 +1,8 @@
 <section class="flex flex-col justify-center items-center text-lg my-10">
     <div class="flex shadow-lg shadow-font/50 mt-20">
         <form
+            [formGroup]="signupForm"
+            (ngSubmit)="onSubmit()"
             class="flex flex-col p-4 justify-evenly items-center gap-2 md:w-96 border-2 border-primary"
         >
             <h1 class="text-4xl font-coustard text-center">S'inscrire</h1>
@@ -8,44 +10,94 @@
                 >Nom<input
                     type="text"
                     class="border block w-full invalid:border-orange"
+                    formControlName="lastname"
             /></label>
+            @if (lastname.errors && lastname.touched) {
+                <span class="text-orange text-sm"
+                    >Veuillez saisir votre nom</span
+                >
+            }
             <label class="w-full"
                 >Prénom<input
                     type="text"
                     class="border block w-full invalid:border-orange"
+                    formControlName="firstname"
             /></label>
+            @if (firstname.errors && firstname.touched) {
+                <span class="text-orange text-sm"
+                    >Veuillez saisir votre prénom</span
+                >
+            }
             <label class="w-full"
                 >Mail<input
                     type="text"
                     class="border block w-full invalid:border-orange"
+                    formControlName="mail"
             /></label>
+            @if (mail.errors && mail.touched) {
+                @if (mail.hasError('required')) {
+                    <span class="text-orange text-sm"
+                        >Veuillez saisir votre email</span
+                    >
+                }
+                @if (mail.hasError('email')) {
+                    <span class="text-orange text-sm"
+                        >Veuillez saisir un email valide</span
+                    >
+                }
+            }
             <label class="w-full"
-                >Nom d'utilisateur<input
+                >Nom d'utilisateur<i class="text-sm">(Prénom+nom)</i>
+                <input
                     type="text"
-                    class="border block w-full invalid:border-orange"
+                    class="border-b block w-full invalid:border-orange"
+                    [placeholder]="username"
                     disabled
             /></label>
             <label class="w-full"
                 >Mot de passe<input
                     type="password"
                     class="border block w-full invalid:border-orange"
+                    formControlName="password"
             /></label>
+            @if (password.errors && password.touched) {
+                <span class="text-sm text-orange"
+                    >Veuillez saisir un mot de passe valide (minimun 12
+                    caractères, 1 majuscule, 1 minuscule, 1 chiffre et 1
+                    caractère spécial)</span
+                >
+            }
             <label class="w-full"
                 >Confirmer mot de passe<input
                     type="password"
                     class="border block w-full invalid:border-orange"
+                    formControlName="confirmPassword"
             /></label>
+            @if (
+                password !== confirmPassword &&
+                confirmPassword.touched &&
+                confirmPassword.errors
+            ) {
+                <span class="text-sm text-orange"
+                    >La confirmation du mot de passe ne correspond pas au mot de
+                    passe saisi.</span
+                >
+            }
             <button
+                type="submit"
                 class="border p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
+                [disabled]="signupForm.invalid"
             >
                 S'inscrire
             </button>
         </form>
         <div
-            class=" grid grid-cols-2 grid-rows-3 place-items-center border-2 border-primary overflow-hidden bg-gray-100"
+            class="grid grid-cols-2 grid-rows-3 place-items-center border-2 border-primary overflow-hidden bg-gray-100"
         >
             <div class="rounded-l-full bg-secondary h-50 w-full"></div>
-            <div class="size-32 border-8 border-font box-content bg-font rotate-45"></div>
+            <div
+                class="size-32 border-8 border-font box-content bg-font rotate-45"
+            ></div>
             <div class="border-[20px] border-orange size-full"></div>
             <div class="bg-primary size-full rounded-full"></div>
             <div
@@ -54,19 +106,6 @@
             <div
                 class="w-0 h-0 border-l-[100px] border-l-transparent border-b-[200px] border-b-secondary border-r-[100px] border-r-transparent"
             ></div>
-
-
-            <!-- <div class="w-full relative">
-                <div class="absolute bottom-0 w-14 h-2/3 bg-font"></div> -->
-
-            <!-- <div
-                    class="bg-secondary absolute top-0 right-0 size-28 rounded-bl-full border-b-4 border-orange"
-                ></div> -->
-
-            <!-- <div
-                    class="bg-secondary size-50 absolute left-1/3 bottom-0 rounded-full"
-                ></div>
-            </div> -->
         </div>
     </div>
     <div class="text-center pt-2">
