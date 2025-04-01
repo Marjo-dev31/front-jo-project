@@ -6,4 +6,22 @@ import { Component } from '@angular/core';
     templateUrl: './account.component.html',
     styleUrl: './account.component.css',
 })
-export class AccountComponent {}
+export class AccountComponent {
+    tickets = [
+        {
+            date: '12/03/2025',
+            offer: 'duo',
+            event: 'escalade',
+        },
+        {
+            date: '12/03/2025',
+            offer: 'famille',
+            event: 'rugby',
+        },
+        {
+            date: '01/04/2025',
+            offer: 'solo',
+            event: 'natation',
+        },
+    ];
+}
