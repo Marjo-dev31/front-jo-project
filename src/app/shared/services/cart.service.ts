@@ -11,7 +11,8 @@ export class CartService {
         this.cart.update((list) => {
             const itemAlreadyExist = list.find(
                 (el) =>
-                    el.offerId === form.offerId && el.eventId === form.eventId,
+                    el.offerId === form.offerId &&
+                    el.sportingEventId === form.sportingEventId,
             );
             if (itemAlreadyExist) {
                 itemAlreadyExist.quantity += form.quantity;

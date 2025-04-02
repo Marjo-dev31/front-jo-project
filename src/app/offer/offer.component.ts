@@ -71,10 +71,32 @@ export class OfferComponent {
         return 0;
     }
 
+    getOfferTitle(): string {
+        const offer = this.offers()?.find((el) => el.id === this.offer.value);
+        if (offer) {
+            return offer?.title;
+        } else {
+            return '';
+        }
+    }
+
+    getEventTitle(): string {
+        const sportingEvent = this.sportingEvents()?.find(
+            (el) => el.id === this.event.value,
+        );
+        if (sportingEvent) {
+            return sportingEvent?.title;
+        } else {
+            return '';
+        }
+    }
+
     onSubmit() {
         const reservation: cartItemInterface = {
             offerId: this.offer.value,
-            eventId: this.event.value,
+            offer: this.getOfferTitle(),
+            sportingEventId: this.event.value,
+            sportingEvent: this.getEventTitle(),
             quantity: this.quantity.value,
             price: this.getPrice(),
             total: this.getTotalByItem(),

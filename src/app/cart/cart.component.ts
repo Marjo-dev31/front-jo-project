@@ -3,10 +3,11 @@ import { CartService } from '../shared/services/cart.service';
 import { cartItemInterface } from '../shared/models/cart-item.interface';
 import { PaymentComponent } from '../payment/payment.component';
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
     selector: 'app-cart',
-    imports: [DialogModule],
+    imports: [DialogModule, TitleCasePipe],
     templateUrl: './cart.component.html',
     styleUrl: './cart.component.css',
 })
@@ -23,7 +24,8 @@ export class CartComponent {
     decrement(offerId: string, eventId: string) {
         this.cartService.cart.update((list) => {
             const item = list.find(
-                (el) => el.offerId === offerId && el.eventId === eventId,
+                (el) =>
+                    el.offerId === offerId && el.sportingEventId === eventId,
             );
             if (item) {
                 item.quantity -= 1;
@@ -36,7 +38,8 @@ export class CartComponent {
     increment(offerId: string, eventId: string) {
         this.cartService.cart.update((list) => {
             const item = list.find(
-                (el) => el.offerId === offerId && el.eventId === eventId,
+                (el) =>
+                    el.offerId === offerId && el.sportingEventId === eventId,
             );
             if (item) {
                 item.quantity += 1;
