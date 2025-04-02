@@ -1,45 +1,73 @@
 <h1 class="text-4xl font-coustard my-10 text-center">Mon panier</h1>
-@if(totalCart() === 0){
-     <span class="text-center block p-4 text-orange text-lg">Votre panier est vide</span>
+@if (totalCart() === 0) {
+    <span class="text-center block p-4 text-orange text-lg"
+        >Votre panier est vide</span
+    >
 }
-<div class="flex flex-col justify-center items-center w-full mb-10 overflow-auto">
+<div
+    class="flex flex-col justify-center items-center w-full mb-10 overflow-auto"
+>
     <table
         class="table-auto border border-primary rounded-lg shadow-lg shadow-font/50 w-3/4 text-left"
     >
         <thead class="bg-secondary/10">
-            <tr>
-                <th class="p-2 md:p-4 border-b border-orange tracking-wide">Offre</th>
-                <th class="p-2 md:p-4 border-b border-orange tracking-wide">Prix Unitaire</th>
-                <th class="p-2 md:p-4 border-b border-orange tracking-wide">Quantité</th>
-                <th class="p-2 md:p-4 border-b border-orange tracking-wide">Total</th>
-                <th class="p-2 md:p-4 border-b border-orange "></th>
+            <tr class="border-b border-orange">
+                <th class="p-2 md:p-4 tracking-wide">Offre : Epreuve</th>
+                <th class="p-2 md:p-4 tracking-wide">Prix Unitaire</th>
+                <th class="p-2 md:p-4 tracking-wide">Quantité</th>
+                <th class="p-2 md:p-4 tracking-wide">Total</th>
+                <th class="p-2 md:p-4"></th>
             </tr>
         </thead>
         <tbody>
             @for (item of cart(); track $index) {
-                <tr>
-                    <th class="p-2 md:p-4 border-b border-primary/50">
-                        {{ item.offerId }}:{{ item.eventId }}
+                <tr class="border-b border-primary/50">
+                    <th class="p-2 md:p-4">
+                        {{ item.offer | titlecase }} : {{ item.sportingEvent | titlecase }}
                     </th>
-                    <td class="p-2 md:p-4 border-b border-primary/50">
+                    <td class="p-2 md:p-4">
                         {{ item.price }}
                     </td>
-                    <td class="p-2 md:p-4 border-b border-primary/50 flex">
+                    <td class="p-2 md:p-4 flex justify-evenly">
                         <button
                             type="button"
-                            (click)="decrement(item.offerId, item.eventId)"
-                            class="px-2.5 mr-4 border rounded-full"
+                            (click)="decrement(item.offerId, item.sportingEventId)"
                             [disabled]="item.quantity === 1"
                         >
-                            -</button
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="size-6"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                />
+                            </svg></button
                         >{{ item.quantity
                         }}<button
                             type="button"
-                            (click)="increment(item.offerId, item.eventId)"
-                            class="px-2 ml-4 border rounded-full"
+                            (click)="increment(item.offerId, item.sportingEventId)"
                             [disabled]="item.quantity === 10"
                         >
-                            +
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="size-6"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                />
+                            </svg>
                         </button>
                     </td>
                     <td class="p-2 md:p-4 border-b border-primary/50">
@@ -47,25 +75,23 @@
                     </td>
                     <td class="p2 md:p-4 border-b border-primary/50">
                         <abbr title="Supprimer">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="darkorange"
-                            class="size-6"
-                            (click)="deleteItem(item)"
-                            (keyup.enter)="
-                                deleteItem(item)
-                            "
-                            tabindex="0"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                            />
-                        </svg></abbr>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="darkorange"
+                                class="size-6"
+                                (click)="deleteItem(item)"
+                                (keyup.enter)="deleteItem(item)"
+                                tabindex="0"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </abbr>
                     </td>
                 </tr>
             }
@@ -86,9 +112,9 @@
         <button
             type="submit"
             class="border w-full text-lg p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
-            [disabled]="totalCart()===0"
+            [disabled]="totalCart() === 0"
             (click)="openDialog()"
-            >
+        >
             Valider mon panier
         </button>
     </div>
