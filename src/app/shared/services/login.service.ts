@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { loginUserInterface, UserInterface } from '../models/user.interface';
 
 @Injectable({
@@ -9,6 +9,9 @@ import { loginUserInterface, UserInterface } from '../models/user.interface';
 export class LoginService {
     private readonly http = inject(HttpClient);
     private readonly url = 'http://localhost:3000/auth';
+
+    isLogin = signal(false);
+    isAdmin = signal(false);
 
     connectedUser = signal<UserInterface>({
         id: '',
@@ -22,8 +25,17 @@ export class LoginService {
     });
 
     login(loginUser: loginUserInterface): Observable<UserInterface> {
-        return this.http
-            .post<UserInterface>(this.url, loginUser)
-            .pipe(tap((response) => this.connectedUser.set(response)));
+        return this.http.post<UserInterface>(this.url, loginUser).pipe(
+            catchError(() => {
+                return throwError(() => new Error());
+            }),
+            tap((response) => {
+                if (response.id) {
+                    this.isLogin.update((value) => value === true);
+                    this.isAdmin.update((value) => value === response.isAdmin);
+                    this.connectedUser.set(response);
+                }
+            }),
+        );
     }
 }

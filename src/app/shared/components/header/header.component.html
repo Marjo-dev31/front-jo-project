@@ -68,9 +68,9 @@
                     >
                 </li>
                 <!-- if connection or not -->
-                @if (isConnected) {
+                @if (isLogin()) {
                     <!-- if role admin else user -->
-                    @if (isAdmin) {
+                    @if (isAdmin()) {
                         <li class="relative hover:cursor-pointer">
                             <a
                                 [routerLink]="['backoffice']"
@@ -128,12 +128,12 @@
                 >
             </li>
             <!-- if connection or not -->
-            @if (isConnected) {
+            @if (isLogin()) {
                 <li class="">
                     <a>Déconnexion</a>
                 </li>
                 <!-- if role admin else user -->
-                @if (isAdmin) {
+                @if (isAdmin()) {
                     <li>
                         <a [routerLink]="['backoffice']">Dashboard</a>
                     </li>
