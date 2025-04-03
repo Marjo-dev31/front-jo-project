@@ -1,9 +1,12 @@
-export interface UserCreateInterface {
+export interface loginUserInterface {
+    email: string;
+    password: string;
+}
+
+export interface UserCreateInterface extends loginUserInterface {
     firstname: string;
     lastname: string;
     username: string;
-    email: string;
-    password: string;
 }
 
 export interface UserInterface extends UserCreateInterface {

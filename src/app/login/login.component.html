@@ -7,12 +7,12 @@
         >
             <h1 class="text-4xl font-coustard text-center">Se connecter</h1>
             <label class="w-full"
-                >Nom d'utilisateur<input
+                >E-Mail<input
                     type="text"
                     class="border border-primary block w-full invalid:border-orange"
-                    formControlName="userName"
+                    formControlName="email"
             /></label>
-            @if (userName.errors && userName.touched) {
+            @if (email.errors && email.touched) {
                 <span class="text-sm text-orange"
                     >Veuillez saisir votre nom d'utilisateur</span
                 >

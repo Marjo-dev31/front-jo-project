@@ -2,7 +2,7 @@
     class="flex flex-col justify-center items-center border-b-2 border-b-orange"
 >
     <h1 class="text-4xl font-coustard my-10 text-center">Mon compte</h1>
-    <div class="w-1/2">
+    <div class="w-1/2 relative">
         <form
             [formGroup]="updateForm"
             class="flex flex-col items-center"
@@ -18,9 +18,8 @@
                     >Nom:<input
                         type="text"
                         class="border border-secondary/50 ml-2"
-                        [placeholder]="[currentUser().lastname]"
                         formControlName="lastname"
-                        [value]="[currentUser().lastname]"
+                        [placeholder]="currentUser().lastname"
                 /></label>
                 @if (lastname.errors && lastname.touched) {
                     <span class="text-orange text-sm"
@@ -31,9 +30,8 @@
                     >Prénom:<input
                         type="text"
                         class="border border-secondary/50 ml-2"
-                        [placeholder]="[currentUser().firstname]"
                         formControlName="firstname"
-                        [value]="[currentUser().firstname]"
+                        [placeholder]="currentUser().firstname"
                 /></label>
                 @if (firstname.errors && firstname.touched) {
                     <span class="text-orange text-sm"
@@ -44,7 +42,7 @@
                     >Nom d'utilisateur:<input
                         type="text"
                         class="border border-secondary/50 ml-2"
-                        [placeholder]="username"
+                        [placeholder]="currentUser().username"
                         [value]="username"
                         disabled
                 /></label>
@@ -52,9 +50,8 @@
                     >E-Mail:<input
                         type="mail"
                         class="border border-secondary/50 ml-2"
-                        [placeholder]="currentUser().email"
                         formControlName="email"
-                        [value]="[currentUser().email]"
+                        [placeholder]="currentUser().email"
                 /></label>
                 @if (email.errors && email.touched) {
                     @if (email.hasError('required')) {
@@ -90,6 +87,27 @@
                 Modifier
             </button>
         </form>
+        <div class="absolute top-12 right-6"><abbr title="Editer">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6 border"
+                (click)="editForm()"
+                (keyup.enter)="
+                    editForm()
+                "
+                tabindex="0"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+                />
+            </svg>
+        </abbr></div>
     </div>
 </section>
 <section
