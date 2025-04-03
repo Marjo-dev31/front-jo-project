@@ -29,18 +29,18 @@
                 >
             }
             <label class="w-full"
-                >Mail<input
+                >E-Mail<input
                     type="text"
                     class="border block w-full invalid:border-orange"
-                    formControlName="mail"
+                    formControlName="email"
             /></label>
-            @if (mail.errors && mail.touched) {
-                @if (mail.hasError('required')) {
+            @if (email.errors && email.touched) {
+                @if (email.hasError('required')) {
                     <span class="text-orange text-sm"
                         >Veuillez saisir votre email</span
                     >
                 }
-                @if (mail.hasError('email')) {
+                @if (email.hasError('email')) {
                     <span class="text-orange text-sm"
                         >Veuillez saisir un email valide</span
                     >

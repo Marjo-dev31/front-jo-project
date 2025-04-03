@@ -13,7 +13,7 @@ export class HeaderComponent {
     private readonly cartService = inject(CartService);
 
     isAdmin = false;
-    isConnected = true;
+    isConnected = false;
     isShow = signal(false);
 
     cartLength = computed(() =>
