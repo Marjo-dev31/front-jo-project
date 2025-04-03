@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
     FormControl,
     FormGroup,
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { SignupService } from '../shared/services/signup.service';
+import { UserCreateInterface } from '../shared/models/user.interface';
 
 @Component({
     selector: 'app-signup',
@@ -14,10 +16,13 @@ import { RouterLink } from '@angular/router';
     styleUrl: './signup.component.css',
 })
 export class SignupComponent {
+    private readonly signupService = inject(SignupService);
+    private readonly router = inject(Router);
+
     signupForm: FormGroup = new FormGroup({
         lastname: new FormControl('', [Validators.required]),
         firstname: new FormControl('', [Validators.required]),
-        mail: new FormControl('', [Validators.required, Validators.email]),
+        email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [
             Validators.required,
             Validators.pattern(
@@ -33,14 +38,21 @@ export class SignupComponent {
     });
 
     onSubmit() {
-        const newUser = {
-            lastname: this.lastname.value,
+        const newUser: UserCreateInterface = {
             firstname: this.firstname.value,
+            lastname: this.lastname.value,
             username: this.username,
-            mail: this.mail.value,
+            email: this.email.value,
             password: this.password.value,
         };
-        console.log(newUser);
+        this.signupService.signup(newUser).subscribe((response) => {
+            if (response.isAdmin) {
+                this.router.navigate(['/backoffice']);
+            } else {
+                this.router.navigate(['/espacepersonnel']);
+            }
+        });
+        this.signupForm.reset();
     }
 
     get lastname() {
@@ -56,8 +68,8 @@ export class SignupComponent {
             return '';
         }
     }
-    get mail() {
-        return this.signupForm.get('mail') as FormControl;
+    get email() {
+        return this.signupForm.get('email') as FormControl;
     }
     get password() {
         return this.signupForm.get('password') as FormControl;

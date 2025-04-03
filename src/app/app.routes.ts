@@ -32,5 +32,5 @@ export const routes: Routes = [
     { path: 'conditionsgeneralesdevente', component: GtcComponent },
     { path: 'erreur', component: ErrorComponent },
     { path: '', component: HomeComponent },
-    { path: '**', component: HomeComponent },
+    { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
