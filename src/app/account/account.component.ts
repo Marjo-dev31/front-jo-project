@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { SignupService } from '../shared/services/signup.service';
 import {
     FormControl,
@@ -17,7 +17,7 @@ import { LoginService } from '../shared/services/login.service';
     templateUrl: './account.component.html',
     styleUrl: './account.component.css',
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent {
     private readonly signupService = inject(SignupService);
     private readonly userService = inject(UserService);
     private readonly loginService = inject(LoginService);
@@ -45,10 +45,6 @@ export class AccountComponent implements OnInit {
             ),
         ]),
     });
-
-    ngOnInit() {
-        console.log(this.currentUser());
-    }
 
     editForm() {
         this.updateForm.patchValue({

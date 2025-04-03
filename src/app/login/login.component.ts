@@ -28,9 +28,16 @@ export class LoginComponent {
             email: this.email.value,
             password: this.password.value,
         };
-        this.loginService.login(loginUser).subscribe();
+        this.loginService.login(loginUser).subscribe((response) => {
+            if (!response.isAdmin) {
+                this.router.navigate(['espacepersonnel']);
+            } else if (response.isAdmin) {
+                this.router.navigate(['backoffice']);
+            }
+        });
+        const alertElement = document.getElementById('wrong-credential');
+        alertElement?.classList.remove('hidden');
         this.loginForm.reset();
-        this.router.navigate(['espacepersonnel']);
     }
 
     get email() {

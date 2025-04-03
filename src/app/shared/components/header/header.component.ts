@@ -2,6 +2,7 @@ import { NgClass, NgStyle } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
     selector: 'app-header',
@@ -11,9 +12,10 @@ import { CartService } from '../../services/cart.service';
 })
 export class HeaderComponent {
     private readonly cartService = inject(CartService);
+    private readonly loginService = inject(LoginService);
 
-    isAdmin = false;
-    isConnected = false;
+    isAdmin = computed(() => this.loginService.isAdmin());
+    isLogin = computed(() => this.loginService.isLogin());
     isShow = signal(false);
 
     cartLength = computed(() =>
