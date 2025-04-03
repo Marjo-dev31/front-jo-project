@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { SignupService } from '../shared/services/signup.service';
 import {
     FormControl,
@@ -9,6 +9,7 @@ import {
 import { UserCreateInterface } from '../shared/models/user.interface';
 import { UserService } from '../shared/services/user.service';
 import { tap } from 'rxjs';
+import { LoginService } from '../shared/services/login.service';
 
 @Component({
     selector: 'app-account',
@@ -16,11 +17,22 @@ import { tap } from 'rxjs';
     templateUrl: './account.component.html',
     styleUrl: './account.component.css',
 })
-export class AccountComponent {
+export class AccountComponent implements OnInit {
     private readonly signupService = inject(SignupService);
     private readonly userService = inject(UserService);
+    private readonly loginService = inject(LoginService);
 
-    currentUser = computed(() => this.signupService.createdUser());
+    createdUser = computed(() => this.signupService.createdUser());
+    loginUser = computed(() => this.loginService.connectedUser());
+    currentUser = computed(() => {
+        if (this.createdUser().id.length > 0) {
+            return this.createdUser();
+        } else if (this.loginUser().id.length > 0) {
+            return this.loginUser();
+        } else {
+            return this.userService.user();
+        }
+    });
 
     updateForm = new FormGroup({
         lastname: new FormControl('', [Validators.required]),
@@ -34,6 +46,18 @@ export class AccountComponent {
         ]),
     });
 
+    ngOnInit() {
+        console.log(this.currentUser());
+    }
+
+    editForm() {
+        this.updateForm.patchValue({
+            lastname: this.currentUser().lastname,
+            firstname: this.currentUser().firstname,
+            email: this.currentUser().email,
+        });
+    }
+
     onSubmit(id: string) {
         const updatedUser: UserCreateInterface = {
             firstname: this.firstname.value,
@@ -44,15 +68,14 @@ export class AccountComponent {
         };
         this.userService
             .updateUser(id, updatedUser)
-            .pipe(tap(() => this.getUserById(id)))
+            .pipe(tap(() => this.getUserById()))
             .subscribe();
         this.updateForm.reset();
     }
 
-    getUserById(id: string) {
-        this.userService.getUserById(id).subscribe();
+    getUserById() {
+        this.userService.getUserById(this.currentUser().id).subscribe();
         this.currentUser = computed(() => this.userService.user());
-        console.log();
     }
 
     get firstname() {
