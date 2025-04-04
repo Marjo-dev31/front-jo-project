@@ -46,7 +46,7 @@ export class SignupComponent {
             password: this.password.value,
         };
         this.signupService.signup(newUser).subscribe((response) => {
-            if (response.isAdmin) {
+            if (response.user.isAdmin) {
                 this.router.navigate(['/backoffice']);
             } else {
                 this.router.navigate(['/espacepersonnel']);

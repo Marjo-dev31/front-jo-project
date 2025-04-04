@@ -14,3 +14,7 @@ export interface UserInterface extends UserCreateInterface {
     isAdmin: boolean;
     privateKey: string;
 }
+export interface LoginResponse {
+    access_token: string;
+    user: UserInterface;
+}
