@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
-import { loginUserInterface, UserInterface } from '../models/user.interface';
+import {
+    LoginResponse,
+    loginUserInterface,
+    UserInterface,
+} from '../models/user.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -24,16 +28,19 @@ export class LoginService {
         email: '',
     });
 
-    login(loginUser: loginUserInterface): Observable<UserInterface> {
-        return this.http.post<UserInterface>(this.url, loginUser).pipe(
+    login(loginUser: loginUserInterface): Observable<LoginResponse> {
+        return this.http.post<LoginResponse>(this.url, loginUser).pipe(
             catchError(() => {
                 return throwError(() => new Error());
             }),
             tap((response) => {
-                if (response.id) {
-                    this.isLogin.update((value) => value === true);
-                    this.isAdmin.update((value) => value === response.isAdmin);
-                    this.connectedUser.set(response);
+                console.log(response);
+                if (response.user) {
+                    this.isLogin.set(true);
+                    this.isAdmin.update(
+                        (value) => value === response.user.isAdmin,
+                    );
+                    this.connectedUser.set(response.user);
                 }
             }),
         );

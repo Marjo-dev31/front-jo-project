@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { UserCreateInterface, UserInterface } from '../models/user.interface';
+import {
+    LoginResponse,
+    UserCreateInterface,
+    UserInterface,
+} from '../models/user.interface';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -21,9 +25,9 @@ export class SignupService {
         email: '',
     });
 
-    signup(newUser: UserCreateInterface): Observable<UserInterface> {
+    signup(newUser: UserCreateInterface): Observable<LoginResponse> {
         return this.http
-            .post<UserInterface>(this.url, newUser)
-            .pipe(tap((res) => this.createdUser.set(res)));
+            .post<LoginResponse>(this.url, newUser)
+            .pipe(tap((res) => this.createdUser.set(res.user)));
     }
 }
