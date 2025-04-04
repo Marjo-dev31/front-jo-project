@@ -29,6 +29,8 @@ export class AuthService {
         email: '',
     });
 
+    access_token = signal('');
+
     login(loginUser: loginUserInterface): Observable<LoginResponse> {
         return this.http
             .post<LoginResponse>(`${this.url}/login`, loginUser)
@@ -41,6 +43,7 @@ export class AuthService {
                         this.isLogin.set(true);
                         this.isAdmin.set(response.user.isAdmin);
                         this.connectedUser.set(response.user);
+                        this.access_token.set(response.access_token);
                     }
                 }),
             );
@@ -56,6 +59,7 @@ export class AuthService {
                 tap((res) => {
                     if (res.user) {
                         this.connectedUser.set(res.user);
+                        this.access_token.set(res.access_token);
                         this.isLogin.set(true);
                     }
                 }),
@@ -65,6 +69,7 @@ export class AuthService {
     logout() {
         this.isLogin.set(false);
         this.isAdmin.set(false);
+        this.access_token.set('');
         this.connectedUser.set({
             id: '',
             firstname: '',

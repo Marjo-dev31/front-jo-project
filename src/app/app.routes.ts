@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AccountComponent } from './account/account.component';
 import { roleGuard } from './shared/guards/role.guard';
+import { authGuard } from './shared/guards/auth.guard';
 
 export const routes: Routes = [
     { path: 'panier', component: CartComponent },
@@ -22,11 +23,12 @@ export const routes: Routes = [
     {
         path: 'espacepersonnel',
         component: AccountComponent,
+        canActivate: [authGuard],
     },
     {
         path: 'backoffice',
         component: AdminComponent,
-        canActivate: [roleGuard],
+        canActivate: [roleGuard, authGuard],
         data: { isAdmin: [true] },
         children: [
             { path: 'offers', component: OfferAdminComponent },
