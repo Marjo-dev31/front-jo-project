@@ -81,7 +81,7 @@
                     } @else {
                         <li class="relative hover:cursor-pointer">
                             <a
-                            [routerLink]="['espacepersonnel']"
+                                [routerLink]="['espacepersonnel']"
                                 class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
                                 ><span class="relative z-10"
                                     >Espace personnel</span
@@ -91,6 +91,9 @@
                     }
                     <li class="relative hover:cursor-pointer">
                         <a
+                            (click)="logout()"
+                            (keyup)="logout()"
+                            tabindex="0"
                             class="transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-white hover:before:right-0 hover:before:w-full"
                             ><span class="relative z-10">Déconnexion</span></a
                         >
@@ -129,8 +132,10 @@
             </li>
             <!-- if connection or not -->
             @if (isLogin()) {
-                <li class="">
-                    <a>Déconnexion</a>
+                <li>
+                    <a (click)="logout()" (keyup)="logout()" tabindex="0"
+                        >Déconnexion</a
+                    >
                 </li>
                 <!-- if role admin else user -->
                 @if (isAdmin()) {
