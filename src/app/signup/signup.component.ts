@@ -6,8 +6,8 @@ import {
     Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { SignupService } from '../shared/services/signup.service';
 import { UserCreateInterface } from '../shared/models/user.interface';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
     selector: 'app-signup',
@@ -16,7 +16,7 @@ import { UserCreateInterface } from '../shared/models/user.interface';
     styleUrl: './signup.component.css',
 })
 export class SignupComponent {
-    private readonly signupService = inject(SignupService);
+    private readonly authService = inject(AuthService);
     private readonly router = inject(Router);
 
     signupForm: FormGroup = new FormGroup({
@@ -45,7 +45,7 @@ export class SignupComponent {
             email: this.email.value,
             password: this.password.value,
         };
-        this.signupService.signup(newUser).subscribe((response) => {
+        this.authService.signup(newUser).subscribe((response) => {
             if (response.user.isAdmin) {
                 this.router.navigate(['/backoffice']);
             } else {

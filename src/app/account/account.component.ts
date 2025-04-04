@@ -1,5 +1,4 @@
 import { Component, computed, inject } from '@angular/core';
-import { SignupService } from '../shared/services/signup.service';
 import {
     FormControl,
     FormGroup,
@@ -9,7 +8,7 @@ import {
 import { UserCreateInterface } from '../shared/models/user.interface';
 import { UserService } from '../shared/services/user.service';
 import { tap } from 'rxjs';
-import { LoginService } from '../shared/services/login.service';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
     selector: 'app-account',
@@ -18,17 +17,13 @@ import { LoginService } from '../shared/services/login.service';
     styleUrl: './account.component.css',
 })
 export class AccountComponent {
-    private readonly signupService = inject(SignupService);
+    private readonly authService = inject(AuthService);
     private readonly userService = inject(UserService);
-    private readonly loginService = inject(LoginService);
 
-    createdUser = computed(() => this.signupService.createdUser());
-    loginUser = computed(() => this.loginService.connectedUser());
+    connectedUser = computed(() => this.authService.connectedUser());
     currentUser = computed(() => {
-        if (this.createdUser().id.length > 0) {
-            return this.createdUser();
-        } else if (this.loginUser().id.length > 0) {
-            return this.loginUser();
+        if (this.connectedUser().id.length > 0) {
+            return this.connectedUser();
         } else {
             return this.userService.user();
         }

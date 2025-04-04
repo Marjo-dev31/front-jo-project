@@ -6,7 +6,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { LoginService } from '../shared/services/login.service';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -15,8 +15,8 @@ import { LoginService } from '../shared/services/login.service';
     styleUrl: './login.component.css',
 })
 export class LoginComponent {
-    loginService = inject(LoginService);
-    router = inject(Router);
+    private readonly authService = inject(AuthService);
+    private readonly router = inject(Router);
 
     loginForm = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
@@ -28,7 +28,7 @@ export class LoginComponent {
             email: this.email.value,
             password: this.password.value,
         };
-        this.loginService.login(loginUser).subscribe((response) => {
+        this.authService.login(loginUser).subscribe((response) => {
             if (response.user) {
                 if (!response.user.isAdmin) {
                     this.router.navigate(['espacepersonnel']);
