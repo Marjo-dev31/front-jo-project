@@ -9,8 +9,11 @@ export interface UserCreateInterface extends loginUserInterface {
     username: string;
 }
 
-export interface UserInterface extends UserCreateInterface {
-    id: string;
+export interface UserUpdatedInterface extends UserCreateInterface {
+    id: string
+}
+
+export interface UserInterface extends UserUpdatedInterface {
     isAdmin: boolean;
     privateKey: string;
 }

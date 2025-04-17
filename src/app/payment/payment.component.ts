@@ -1,12 +1,14 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { CurrencyPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import {
     FormControl,
     FormGroup,
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
+import { OrderService } from '../shared/services/order.service';
+import { CartService } from '../shared/services/cart.service';
 
 @Component({
     selector: 'app-payment',
@@ -15,8 +17,11 @@ import {
     styleUrl: './payment.component.css',
 })
 export class PaymentComponent {
+    private readonly orderService = inject(OrderService);
+    private readonly cartService = inject(CartService)
     dialogRef = inject<DialogRef<string>>(DialogRef<string>);
     data = inject(DIALOG_DATA);
+    cart = computed(()=> this.cartService.cart())
 
     paymentForm = new FormGroup({
         lastname: new FormControl('', [Validators.required]),
@@ -55,6 +60,7 @@ export class PaymentComponent {
     onSubmit() {
         if (this.paymentForm.valid) {
             // send card in service to create an order in api
+            this.orderService.createOrder(this.cart()).subscribe();
             console.log(this.paymentForm.value);
             this.paymentForm.reset();
             this.close();

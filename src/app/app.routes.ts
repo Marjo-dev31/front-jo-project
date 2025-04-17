@@ -14,6 +14,7 @@ import { SignupComponent } from './signup/signup.component';
 import { AccountComponent } from './account/account.component';
 import { roleGuard } from './shared/guards/role.guard';
 import { authGuard } from './shared/guards/auth.guard';
+import { ForbiddenComponent } from './shared/components/error/forbidden.component';
 
 export const routes: Routes = [
     { path: 'panier', component: CartComponent },
@@ -39,6 +40,7 @@ export const routes: Routes = [
     { path: 'politiquedeconfidentialite', component: PrivacyPolicyComponent },
     { path: 'conditionsgeneralesdevente', component: GtcComponent },
     { path: 'erreur', component: ErrorComponent },
+    { path: 'forbidden', component: ForbiddenComponent },
     { path: '', component: HomeComponent },
     { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

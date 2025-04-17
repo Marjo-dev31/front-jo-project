@@ -4,6 +4,8 @@ import { cartItemInterface } from '../shared/models/cart-item.interface';
 import { PaymentComponent } from '../payment/payment.component';
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { TitleCasePipe } from '@angular/common';
+import { AuthService } from '../shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-cart',
@@ -13,6 +15,9 @@ import { TitleCasePipe } from '@angular/common';
 })
 export class CartComponent {
     private readonly cartService = inject(CartService);
+    private readonly authService = inject(AuthService);
+    private readonly router = inject(Router);
+
     dialog = inject(Dialog);
 
     totalCart = computed(() =>
@@ -20,6 +25,7 @@ export class CartComponent {
     );
 
     cart = computed(() => this.cartService.cart());
+    currentUser = computed(() => this.authService.connectedUser());
 
     decrement(offerId: string, eventId: string) {
         this.cartService.cart.update((list) => {
@@ -54,12 +60,22 @@ export class CartComponent {
     }
 
     openDialog() {
-        this.dialog.open<string>(PaymentComponent, {
-            width: '250px',
-            data: this.totalCart(),
-        });
-        // dialogRef.closed.subscribe((result) =>
-        //     console.log('the dialog was closed', result),
-        // );
+        if (this.currentUser().id.length > 0) {
+            const dialogRef = this.dialog.open<string>(PaymentComponent, {
+                width: '250px',
+                data: this.totalCart(),
+            });
+            dialogRef.closed.subscribe(() => {
+                console.log('the dialog was closed');
+                this.resetCart();
+                this.router.navigateByUrl('espacepersonnel')
+            });
+        } else {
+            this.router.navigateByUrl('login');
+        }
+    }
+
+    resetCart() {
+        this.cartService.resetCart();
     }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { UserCreateInterface, UserInterface } from '../models/user.interface';
+import { UserCreateInterface, UserInterface, UserUpdatedInterface } from '../models/user.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -32,9 +32,8 @@ export class UserService {
     }
 
     updateUser(
-        id: string,
-        updatedUser: UserCreateInterface,
+        updatedUser: UserUpdatedInterface,
     ): Observable<UserInterface> {
-        return this.http.patch<UserInterface>(`${this.url}/${id}`, updatedUser);
+        return this.http.patch<UserInterface>(`${this.url}/${updatedUser.id}`, updatedUser);
     }
 }
