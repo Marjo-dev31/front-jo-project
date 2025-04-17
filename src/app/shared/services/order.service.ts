@@ -21,6 +21,6 @@ export class OrderService {
     }
 
     createOrder(cart: cartItemInterface[]): Observable<orderInterface> {
-      return this.http.post<orderInterface>(`${this.url}/650f653d-072c-4124-9139-645d394b9c12`, cart)
+      return this.http.post<orderInterface>(`${this.url}/${this.currentUserId()}`, cart)
     }
 }
