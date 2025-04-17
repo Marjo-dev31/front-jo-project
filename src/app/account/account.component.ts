@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, OnInit, Signal, signal } from '@angular/core';
 import {
     FormControl,
     FormGroup,
@@ -9,16 +9,20 @@ import { UserUpdatedInterface } from '../shared/models/user.interface';
 import { UserService } from '../shared/services/user.service';
 import { tap } from 'rxjs';
 import { AuthService } from '../shared/services/auth.service';
+import { TicketService } from '../shared/services/ticket.service';
+import { TicketInterface } from '../shared/models/ticket.interface';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-account',
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, DatePipe],
     templateUrl: './account.component.html',
     styleUrl: './account.component.css',
 })
-export class AccountComponent {
+export class AccountComponent implements OnInit {
     private readonly authService = inject(AuthService);
     private readonly userService = inject(UserService);
+    private readonly ticketService = inject(TicketService);
 
     connectedUser = computed(() => this.authService.connectedUser());
     currentUser = computed(() => {
@@ -28,6 +32,12 @@ export class AccountComponent {
             return this.userService.user();
         }
     });
+
+    tickets = signal<TicketInterface[]>([]);
+
+    ngOnInit(): void {
+        this.getTicketsByUser()
+    }
 
     updateForm = new FormGroup({
         lastname: new FormControl('', [Validators.required]),
@@ -92,21 +102,11 @@ export class AccountComponent {
         return this.updateForm.get('password') as FormControl;
     }
 
-    tickets = [
-        {
-            date: '12/03/2025',
-            offer: 'duo',
-            event: 'escalade',
-        },
-        {
-            date: '12/03/2025',
-            offer: 'famille',
-            event: 'rugby',
-        },
-        {
-            date: '01/04/2025',
-            offer: 'solo',
-            event: 'natation',
-        },
-    ];
+    getTicketsByUser() {
+        this.ticketService
+            .getAllByUser(this.currentUser().id)
+            .subscribe((response: TicketInterface[]) =>
+                this.tickets.update((value)=> value = response),
+            );
+    }
 }

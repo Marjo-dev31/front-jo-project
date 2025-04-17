@@ -139,11 +139,11 @@
                 </tr>
             </thead>
             <tbody>
-                @for (ticket of tickets; track $index) {
+                @for (ticket of tickets(); track $index) {
                     <tr class="border-b border-primary/50">
-                        <td class="p-2 md:p-4">{{ ticket.date }}</td>
-                        <td class="p-2 md:p-4">{{ ticket.offer }}</td>
-                        <td class="p-2 md:p-4">{{ ticket.event }}</td>
+                        <td class="p-2 md:p-4">{{ ticket.createAt | date:'dd/MM/yyyy' }}</td>
+                        <td class="p-2 md:p-4">{{ ticket.offer.title }}</td>
+                        <td class="p-2 md:p-4">{{ ticket.sportingEvent.title }}</td>
                         <td class="p-2 md:p-4">
                             <a href=""
                                 ><svg
