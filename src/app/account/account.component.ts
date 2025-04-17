@@ -5,7 +5,7 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { UserCreateInterface } from '../shared/models/user.interface';
+import { UserUpdatedInterface } from '../shared/models/user.interface';
 import { UserService } from '../shared/services/user.service';
 import { tap } from 'rxjs';
 import { AuthService } from '../shared/services/auth.service';
@@ -49,8 +49,9 @@ export class AccountComponent {
         });
     }
 
-    onSubmit(id: string) {
-        const updatedUser: UserCreateInterface = {
+    onSubmit() {
+        const updatedUser: UserUpdatedInterface = {
+            id: this.currentUser().id,
             firstname: this.firstname.value,
             lastname: this.lastname.value,
             username: this.username,
@@ -58,7 +59,7 @@ export class AccountComponent {
             password: this.password.value,
         };
         this.userService
-            .updateUser(id, updatedUser)
+            .updateUser(updatedUser)
             .pipe(tap(() => this.getUserById()))
             .subscribe();
         this.updateForm.reset();

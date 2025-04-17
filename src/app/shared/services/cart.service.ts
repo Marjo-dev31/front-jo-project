@@ -28,4 +28,8 @@ export class CartService {
     deleteToCart(item: cartItemInterface) {
         this.cart.update((list) => list.filter((el) => el != item));
     }
+
+    resetCart() {
+        this.cart.update((value ) => value = []);
+    }
 }

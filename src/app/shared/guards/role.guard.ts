@@ -12,7 +12,7 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
         if (expectedRole.indexOf(isAdmin) !== -1) {
             return true;
         }
-        router.navigate(['erreur']);
+        router.navigate(['login']);
         return false;
     };
     return isAuthorized(route);
