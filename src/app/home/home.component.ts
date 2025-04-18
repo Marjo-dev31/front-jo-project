@@ -15,6 +15,8 @@ export class HomeComponent {
     private readonly sportingEventService = inject(sportingEventService);
     public events = toSignal(this.sportingEventService.getAllSportingEvents());
 
+    url = 'http://localhost:3000/sporting-event/upload/'
+
     showMore(id: string) {
         this.activeElement.update(() => id);
     }
