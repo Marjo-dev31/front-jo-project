@@ -87,27 +87,27 @@
                 Modifier
             </button>
         </form>
-        <div class="absolute top-12 right-6"><abbr title="Editer">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="size-6 border"
-                (click)="editForm()"
-                (keyup.enter)="
-                    editForm()
-                "
-                tabindex="0"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
-                />
-            </svg>
-        </abbr></div>
+        <div class="absolute top-12 right-6">
+            <abbr title="Editer">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6 border"
+                    (click)="editForm()"
+                    (keyup.enter)="editForm()"
+                    tabindex="0"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+                    />
+                </svg>
+            </abbr>
+        </div>
     </div>
 </section>
 <section
@@ -139,14 +139,18 @@
                 </tr>
             </thead>
             <tbody>
-                @for (ticket of tickets(); track ticket.id) {
+                @for (ticket of tickets(); track $index) {
                     <tr class="border-b border-primary/50">
-                        <td class="p-2 md:p-4">{{ ticket.createAt | date:'dd/MM/yyyy' }}</td>
-                        <td class="p-2 md:p-4">{{ ticket.offer.title }}</td>
-                        <td class="p-2 md:p-4">{{ ticket.sportingEvent.title }}</td>
                         <td class="p-2 md:p-4">
-                            <button (click)="generatePdf(ticket.id)" class="border"
-                                ><svg
+                            {{ ticket.createAt | date: 'dd/MM/yyyy' }}
+                        </td>
+                        <td class="p-2 md:p-4">{{ ticket.offer.title }}</td>
+                        <td class="p-2 md:p-4">
+                            {{ ticket.sportingEvent.title }}
+                        </td>
+                        <td class="p-2 md:p-4">
+                            <button (click)="download($index)">
+                                <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -161,19 +165,26 @@
                                     />
                                 </svg>
                             </button>
-                            <div>
+                            <div class="hidden">
                                 <qrcode
-                                id="qrCode"
-                                [qrdata]="ticket.ticketKey+'/'+ticket.order.user.id"
-                                [allowEmptyString]="true"
-                                [alt]="'qrCode'"
-                                [ariaLabel]="'QRCode avec les données des billets'"
-                                [elementType]="'img'"
-                                [errorCorrectionLevel]="'M'"
-                                [margin]="4"
-                                [scale]="1"
-                                [title]="'Mes e-billets'"
-                                [width]="300"
+                                    (qrCodeURL)="onChangeURL($event)"
+                                    class="qrCode"
+                                    [qrdata]="
+                                        ticket.ticketKey +
+                                        '/' +
+                                        ticket.order.user.privateKey
+                                    "
+                                    [allowEmptyString]="true"
+                                    [alt]="'qrCode'"
+                                    [ariaLabel]="
+                                        'QRCode avec les données des billets'
+                                    "
+                                    [elementType]="'img'"
+                                    [errorCorrectionLevel]="'M'"
+                                    [margin]="4"
+                                    [scale]="1"
+                                    [title]="'Mes e-billets'"
+                                    [width]="300"
                                 ></qrcode>
                             </div>
                         </td>

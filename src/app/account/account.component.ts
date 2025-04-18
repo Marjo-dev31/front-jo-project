@@ -14,6 +14,7 @@ import { TicketInterface } from '../shared/models/ticket.interface';
 import { DatePipe } from '@angular/common';
 import { jsPDF } from 'jspdf';
 import { QRCodeComponent } from 'angularx-qrcode';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-account',
@@ -36,6 +37,7 @@ export class AccountComponent implements OnInit {
     });
 
     tickets = signal<TicketInterface[]>([]);
+    qrCodeDownloadLink: SafeUrl = '';
 
     ngOnInit(): void {
         this.getTicketsByUser();
@@ -112,17 +114,64 @@ export class AccountComponent implements OnInit {
             );
     }
 
-    generatePdf(id: string) {
-        const doc = new jsPDF();
-        doc.setFontSize(20)
-        doc.text('Votre e-billet', 80, 20)
-        doc.setFontSize(16)
-        doc.text(
-            `Bonjour ${this.currentUser().firstname}, veuillez présenter ce billet à l'entrée de l'épreuve`,
-            25,
-            50,
-        );
-        doc.save('ticket.pdf');
+    // generatePdf() {
+    //     const img = new Image();
+    //     img.crossOrigin = 'Anonymous';
+    //     img.src = this.qrCodeDownloadLink as string;
+    //     img.onload = () => {
+    //         const canvas = document.createElement('canvas');
+    //         const ctx = canvas.getContext('2d');
+    //         canvas.width = img.width;
+    //         canvas.height = img.height;
+    //         ctx?.drawImage(img, 0, 0, img.width, img.height);
+    //         const imgData = canvas.toDataURL('image/png');
+
+    //         const doc = new jsPDF();
+    //         doc.setFontSize(20);
+    //         doc.text('Votre e-billet', 80, 20);
+    //         doc.setFontSize(16);
+    //         doc.text(
+    //             `Bonjour ${this.currentUser().firstname}, veuillez présenter ce billet à l'entrée de l'épreuve`,
+    //             25,
+    //             50,
+    //         );
+    //         console.log(imgData);
+    //         // doc.addSvgAsImage(imgData, 10, 10, img.width, img.height)
+    //         doc.addImage(imgData, 'PNG', 10, 10, img.width, img.height);
+    //         doc.save('ticket.pdf');
+    //     };
+    // }
+
+    onChangeURL(url: SafeUrl) {
+        this.qrCodeDownloadLink = url;
     }
 
+    getBase64Image(img: any) {
+        var canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext('2d');
+        ctx?.drawImage(img, 0, 0, img.width, img.height);
+        var dataURL = canvas.toDataURL('image/png');
+        return dataURL;
+    }
+
+    download(i: number) {
+        const qrcode = document.querySelectorAll('.qrCode');
+        console.log(qrcode)
+        const doc = new jsPDF();
+        if (qrcode) {
+            doc.setFontSize(20);
+            doc.text('Votre e-billet', 80, 30);
+            doc.setFontSize(16);
+            doc.text(
+                ` ${this.currentUser().firstname}, veuillez présenter ce e-billet à l'entrée de votre épreuve`,
+                20,
+                80,
+            );
+            const imageData = this.getBase64Image(qrcode[i].firstChild?.firstChild);
+            doc.addImage(imageData, 'JPG', 80, 130, 50, 50);
+            doc.save('qrcode.pdf');
+        }
+    }
 }
