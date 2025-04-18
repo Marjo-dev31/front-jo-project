@@ -161,6 +161,21 @@
                                     />
                                 </svg>
                             </button>
+                            <div>
+                                <qrcode
+                                id="qrCode"
+                                [qrdata]="ticket.ticketKey+'/'+ticket.order.user.id"
+                                [allowEmptyString]="true"
+                                [alt]="'qrCode'"
+                                [ariaLabel]="'QRCode avec les données des billets'"
+                                [elementType]="'img'"
+                                [errorCorrectionLevel]="'M'"
+                                [margin]="4"
+                                [scale]="1"
+                                [title]="'Mes e-billets'"
+                                [width]="300"
+                                ></qrcode>
+                            </div>
                         </td>
                     </tr>
                 }
