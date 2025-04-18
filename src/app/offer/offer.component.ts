@@ -28,6 +28,7 @@ export class OfferComponent {
         this.sportingEventService.getAllSportingEvents(),
     );
     public formIsSubmitted = signal<boolean>(false);
+    url = 'http://localhost:3000/offer/upload/'
 
     readonly form = new FormGroup({
         offer: new FormControl('', [Validators.required]),

@@ -55,7 +55,7 @@ export class OfferAdminComponent {
 
     onSubmit() {
         const formData = new FormData();
-        formData.append('file', this.selectedFile as Blob);
+        formData.append('file', this.selectedFile as File);
         this.offerService.addImage(formData).subscribe();
 
         const imgUrl = this.imgUrl.value.split(`\\`).slice(-1);
