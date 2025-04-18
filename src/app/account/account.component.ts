@@ -13,10 +13,11 @@ import { TicketService } from '../shared/services/ticket.service';
 import { TicketInterface } from '../shared/models/ticket.interface';
 import { DatePipe } from '@angular/common';
 import { jsPDF } from 'jspdf';
+import { QRCodeComponent } from 'angularx-qrcode';
 
 @Component({
     selector: 'app-account',
-    imports: [ReactiveFormsModule, DatePipe],
+    imports: [ReactiveFormsModule, DatePipe, QRCodeComponent],
     templateUrl: './account.component.html',
     styleUrl: './account.component.css',
 })
@@ -114,12 +115,12 @@ export class AccountComponent implements OnInit {
     generatePdf(id: string) {
         const doc = new jsPDF();
         doc.setFontSize(20)
-        doc.text('Votre e-billet', 10, 10)
+        doc.text('Votre e-billet', 80, 20)
         doc.setFontSize(16)
         doc.text(
             `Bonjour ${this.currentUser().firstname}, veuillez présenter ce billet à l'entrée de l'épreuve`,
-            10,
-            20,
+            25,
+            50,
         );
         doc.save('ticket.pdf');
     }
