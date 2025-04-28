@@ -147,18 +147,17 @@ export class AccountComponent implements OnInit {
     }
 
     getBase64Image(img: any) {
-        var canvas = document.createElement('canvas');
+        const canvas = document.createElement('canvas');
         canvas.width = img.width;
         canvas.height = img.height;
-        var ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d');
         ctx?.drawImage(img, 0, 0, img.width, img.height);
-        var dataURL = canvas.toDataURL('image/png');
+        const dataURL = canvas.toDataURL('image/png');
         return dataURL;
     }
 
     download(i: number) {
         const qrcode = document.querySelectorAll('.qrCode');
-        console.log(qrcode)
         const doc = new jsPDF();
         if (qrcode) {
             doc.setFontSize(20);
@@ -169,9 +168,11 @@ export class AccountComponent implements OnInit {
                 20,
                 80,
             );
-            const imageData = this.getBase64Image(qrcode[i].firstChild?.firstChild);
+            const imageData = this.getBase64Image(
+                qrcode[i].firstChild?.firstChild,
+            );
             doc.addImage(imageData, 'JPG', 80, 130, 50, 50);
-            doc.save('qrcode.pdf');
+            doc.save('ebillet.pdf');
         }
     }
 }

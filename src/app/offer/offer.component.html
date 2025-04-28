@@ -15,15 +15,15 @@
                 <div class="md:w-1/2">
                     <img
                         [src]="this.url + offer.imgUrl"
-                        alt="{{ offer.title }}"
+                        [alt]="'offre ' + offer.title"
                         class="h-60 w-full object-cover"
                     />
                 </div>
                 <div class="space-y-2 p-2 bg-gray-100 md:w-1/2">
-                    <h2 class="text-center text-2xl font-coustard">
+                    <h2 class="text-center text-4xl font-coustard">
                         {{ offer.title | titlecase }}
                     </h2>
-                    <p>{{ offer.description }}</p>
+                    <p class="">{{ offer.description }}</p>
                     <p>Tarif: {{ offer.price | currency: 'EUR' }}</p>
                 </div>
             </div>
