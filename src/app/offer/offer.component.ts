@@ -11,6 +11,7 @@ import { sportingEventService } from '../shared/services/sporting-event.service'
 import { CartService } from '../shared/services/cart.service';
 import { cartItemInterface } from '../shared/models/cart-item.interface';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { environment } from '../environments/environments';
 
 @Component({
     selector: 'app-offer',
@@ -28,7 +29,7 @@ export class OfferComponent {
         this.sportingEventService.getAllSportingEvents(),
     );
     public formIsSubmitted = signal<boolean>(false);
-    url = 'http://localhost:3000/offer/upload/';
+    url = `${environment.serverUrl}/offer/upload/`;
 
     readonly form = new FormGroup({
         offer: new FormControl('', [Validators.required]),

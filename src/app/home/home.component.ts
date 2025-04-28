@@ -3,6 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import { sportingEventService } from '../shared/services/sporting-event.service';
 import { RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { environment } from '../environments/environments';
 
 @Component({
     selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomeComponent {
     private readonly sportingEventService = inject(sportingEventService);
     public events = toSignal(this.sportingEventService.getAllSportingEvents());
 
-    url = 'http://localhost:3000/sporting-event/upload/';
+    url = `${environment.serverUrl}/sporting-event/upload/`;
 
     showMore(id: string) {
         this.activeElement.update(() => id);

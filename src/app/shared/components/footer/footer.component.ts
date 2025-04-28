@@ -37,8 +37,8 @@ import { RouterLink } from '@angular/router';
                     </li>
                 </ul>
             </div>
-            <div class="flex flex-col gap-2 md:col-start-6">
-                <a href="" class="hover:underline">Nous contacter</a>
+            <div class="flex flex-col gap-2 md:col-start-6 justify-around">
+                <a href="" class="hover:underline p-2">Nous contacter</a>
                 <a
                     [routerLink]="['/politiquedeconfidentialite']"
                     class="hover:underline"
