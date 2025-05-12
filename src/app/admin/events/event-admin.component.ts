@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { sportingEventService } from '../../shared/services/sporting-event.service';
+import { SportingEventService } from '../../shared/services/sporting-event.service';
 import { NgStyle, TitleCasePipe } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
@@ -17,10 +17,10 @@ import {
     selector: 'app-event-admin',
     imports: [TitleCasePipe, NgStyle, ReactiveFormsModule],
     templateUrl: './event-admin.component.html',
-    styleUrl: './event-admin.component.css',
+    styles: '',
 })
 export class EventAdminComponent {
-    private readonly sportingEventService = inject(sportingEventService);
+    private readonly sportingEventService = inject(SportingEventService);
 
     sportingEvents = toSignal(this.sportingEventService.getAllSportingEvents());
     addFormIsShow = signal(false);

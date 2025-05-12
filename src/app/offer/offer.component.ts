@@ -7,7 +7,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { OfferService } from '../shared/services/offer.service';
-import { sportingEventService } from '../shared/services/sporting-event.service';
+import { SportingEventService } from '../shared/services/sporting-event.service';
 import { CartService } from '../shared/services/cart.service';
 import { cartItemInterface } from '../shared/models/cart-item.interface';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -17,11 +17,11 @@ import { environment } from '../environments/environments';
     selector: 'app-offer',
     imports: [CurrencyPipe, TitleCasePipe, NgClass, ReactiveFormsModule],
     templateUrl: './offer.component.html',
-    styleUrl: './offer.component.css',
+    styles: '',
 })
 export class OfferComponent {
     private readonly offerService = inject(OfferService);
-    private readonly sportingEventService = inject(sportingEventService);
+    private readonly sportingEventService = inject(SportingEventService);
     private readonly cartService = inject(CartService);
 
     public offers = toSignal(this.offerService.getAllOffers());

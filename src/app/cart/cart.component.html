@@ -23,7 +23,8 @@
             @for (item of cart(); track $index) {
                 <tr class="border-b border-primary/50">
                     <th class="p-2 md:p-4">
-                        {{ item.offer | titlecase }} : {{ item.sportingEvent | titlecase }}
+                        {{ item.offer | titlecase }} :
+                        {{ item.sportingEvent | titlecase }}
                     </th>
                     <td class="p-2 md:p-4">
                         {{ item.price }}
@@ -31,7 +32,9 @@
                     <td class="p-2 md:p-4 flex justify-evenly">
                         <button
                             type="button"
-                            (click)="decrement(item.offerId, item.sportingEventId)"
+                            (click)="
+                                decrement(item.offerId, item.sportingEventId)
+                            "
                             [disabled]="item.quantity === 1"
                         >
                             <svg
@@ -51,7 +54,9 @@
                         >{{ item.quantity
                         }}<button
                             type="button"
-                            (click)="increment(item.offerId, item.sportingEventId)"
+                            (click)="
+                                increment(item.offerId, item.sportingEventId)
+                            "
                             [disabled]="item.quantity === 10"
                         >
                             <svg
@@ -89,7 +94,8 @@
                                 <path
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                />
                             </svg>
                         </abbr>
                     </td>

@@ -20,7 +20,7 @@ import { SafeUrl } from '@angular/platform-browser';
     selector: 'app-account',
     imports: [ReactiveFormsModule, DatePipe, QRCodeComponent],
     templateUrl: './account.component.html',
-    styleUrl: './account.component.css',
+    styles: '',
 })
 export class AccountComponent implements OnInit {
     private readonly authService = inject(AuthService);
@@ -109,7 +109,7 @@ export class AccountComponent implements OnInit {
     getTicketsByUser() {
         this.ticketService
             .getAllByUser(this.currentUser().id)
-            .subscribe((response: TicketInterface[]) =>
+            .subscribe((response) =>
                 this.tickets.update((value) => (value = response)),
             );
     }

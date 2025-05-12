@@ -6,6 +6,7 @@
     <div
         class="border-2 border-orange h-full absolute top-30 md:top-20 -z-10"
     ></div>
+    @if (offers()) {
     <div class="flex flex-col items-center justify-center w-3/4 gap-10">
         @for (offer of offers(); track $index) {
             <div
@@ -28,7 +29,9 @@
                 </div>
             </div>
         }
-    </div>
+    </div> } @else {
+        <p class="text-lg italic bg-gray-50">Pas d'offres disponibles pour le moment, revenez plus tard !</p>
+    }
 </section>
 <!-- form resa -->
 <section

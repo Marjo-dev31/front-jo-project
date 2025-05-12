@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
     selector: 'app-cart',
     imports: [DialogModule, TitleCasePipe],
     templateUrl: './cart.component.html',
-    styleUrl: './cart.component.css',
+    styles: '',
 })
 export class CartComponent {
     private readonly cartService = inject(CartService);

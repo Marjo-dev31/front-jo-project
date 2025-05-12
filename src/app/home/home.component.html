@@ -1,108 +1,134 @@
 <section class="m-4 text-pretty md:m-10">
     <h1 class="font-coustard text-4xl text-balance text-center my-20">
-        Bienvenue sur la Billetterie Officielle des <span class="text-orange">Jeux Olympiques</span> !
+        Bienvenue sur la Billetterie Officielle des
+        <span class="text-orange">Jeux Olympiques</span> !
     </h1>
     <div class="md:flex-row md:flex md:justify-evenly">
-    <div class="space-y-2 md:w-1/2">
-        <p class="">
-            Vivez l'émotion des Jeux Olympiques en réservant vos places dès
-            maintenant ! Assistez aux performances des plus grands athlètes du
-            monde et plongez au cœur de la compétition dans une ambiance
-            exceptionnelle.
-        </p>
-        <ul class="flex flex-col justify-center">
-            <li class="p-2">
-                <h2 class="font-coustard text-2xl">Des <span class="text-orange">épreuves</span> inoubliables :</h2>
-                <p>
-                    athlétisme, natation, gymnastique, football et bien plus
-                    encore !
-                </p>
-            </li>
-            <li class="p-2">
-                <h2 class="font-coustard text-2xl">Des billets <span class="text-orange">pour tous</span> :</h2>
-                <p>
-                    choisissez vos offres et réservez facilement en quelques
-                    clics.
-                </p>
-            </li>
-            <li class="p-2">
-                <h2 class="font-coustard text-2xl">Un événement <span class="text-orange">mondial</span> :</h2>
-                <p>vibrez avec des fans venus des quatre coins du monde.</p>
-            </li>
-        </ul>
-        <p>
-            Ne manquez pas cette occasion unique de faire partie de l'histoire.
-            <a [routerLink]="['/offers']" routerLinkActive="router-link-active"  class="text-orange italic">Réservez dès maintenant</a> et préparez-vous à vivre la magie des Jeux !
-        </p>
-        <p class="italic">#Paris2025 #JeuxOlympiques #BilletterieOfficielle</p>
-    </div>
-    <div class="flex justify-center my-4">
-        <div class="accordion">
-            <div class="accordion-content">
-                <img
-                    src="/Anneaux olympiques sur le Trocadro.webp"
-                    alt="Photo des anneaux olypiques sur la Tour Eiffel"
-                    class="accordion-img"
-                />
-            </div>
-            <div class="accordion-content">
-                <img
-                    src="/olympia-68773_1280.jpg"
-                    class="accordion-img"
-                    alt="Stèle récapitulatives des dates des Jeaux Olympiques"
-                />
-            </div>
-            <div class="accordion-content">
-                <img
-                    src="/edf-jop2024-vasque-illus-1.webp"
-                    class="accordion-img"
-                    alt="Photo du ballon de la flamme Olympique"
-                />
+        <div class="space-y-2 md:w-1/2">
+            <p class="">
+                Vivez l'émotion des Jeux Olympiques en réservant vos places dès
+                maintenant ! Assistez aux performances des plus grands athlètes
+                du monde et plongez au cœur de la compétition dans une ambiance
+                exceptionnelle.
+            </p>
+            <ul class="flex flex-col justify-center">
+                <li class="p-2">
+                    <h2 class="font-coustard text-2xl">
+                        Des
+                        <span class="text-orange">épreuves</span> inoubliables :
+                    </h2>
+                    <p>
+                        athlétisme, natation, gymnastique, football et bien plus
+                        encore !
+                    </p>
+                </li>
+                <li class="p-2">
+                    <h2 class="font-coustard text-2xl">
+                        Des billets <span class="text-orange">pour tous</span> :
+                    </h2>
+                    <p>
+                        choisissez vos offres et réservez facilement en quelques
+                        clics.
+                    </p>
+                </li>
+                <li class="p-2">
+                    <h2 class="font-coustard text-2xl">
+                        Un événement <span class="text-orange">mondial</span> :
+                    </h2>
+                    <p>vibrez avec des fans venus des quatre coins du monde.</p>
+                </li>
+            </ul>
+            <p>
+                Ne manquez pas cette occasion unique de faire partie de
+                l'histoire.
+                <a
+                    [routerLink]="['/offers']"
+                    routerLinkActive="router-link-active"
+                    class="text-orange italic"
+                    >Réservez dès maintenant</a
+                >
+                et préparez-vous à vivre la magie des Jeux !
+            </p>
+            <p class="italic">
+                #Paris2025 #JeuxOlympiques #BilletterieOfficielle
+            </p>
+        </div>
+        <div class="flex justify-center my-4">
+            <div class="accordion">
+                <div class="accordion-content">
+                    <img
+                        src="/Anneaux olympiques sur le Trocadro.webp"
+                        alt="Photo des anneaux olypiques sur la Tour Eiffel"
+                        class="accordion-img"
+                    />
+                </div>
+                <div class="accordion-content">
+                    <img
+                        src="/olympia-68773_1280.jpg"
+                        class="accordion-img"
+                        alt="Stèle récapitulatives des dates des Jeaux Olympiques"
+                    />
+                </div>
+                <div class="accordion-content">
+                    <img
+                        src="/edf-jop2024-vasque-illus-1.webp"
+                        class="accordion-img"
+                        alt="Photo du ballon de la flamme Olympique"
+                    />
+                </div>
             </div>
         </div>
-    </div></div>
+    </div>
 </section>
 <section class="event flex flex-col justify-center items-center my-20">
     <h2 class="w-2/3 text-center my-2 font-coustard text-2xl">
         Parmi les sports les plus populaires, retrouvez :
     </h2>
-    <ul class="flex flex-col justify-center items-start md:flex-row">
-        @for (event of events(); track $index) {
-            <li class="m-3 w-56 rounded-lg bg-secondary overflow-hidden shadow-lg shadow-font/50">
-                <img
-                    class="h-60 w-full object-cover object-top"
-                    [src]="this.url + event.imgUrl"
-                    [alt]="'Photo représentant l épreuve ' + event.title"
-                />
-                <div class="p-2 relative">
-                    <h2 class="text-2xl font-bold font-coustard">
-                        {{ event.title | titlecase }}
-                    </h2>
-                    <p
-                        class="w-full"
-                        [ngClass]="{ 'truncate': activeElement() !== event.id }"
-                    >
-                        {{ event.description }}
-                    </p>
-                    @if (activeElement() !== event.id) {
-                        <button
-                            type="button"
-                            (click)="showMore(event.id)"
-                            class="bottom-0 right-2 border rounded-lg px-1 mt-1 hover:bg-primary hover:text-gray-100"
+    @if (events()) {
+        <ul class="flex flex-col justify-center items-start md:flex-row">
+            @for (event of events(); track $index) {
+                <li
+                    class="m-3 w-56 rounded-lg bg-secondary overflow-hidden shadow-lg shadow-font/50"
+                >
+                    <img
+                        class="h-60 w-full object-cover object-top"
+                        [src]="this.url + event.imgUrl"
+                        [alt]="'Représentation l épreuve ' + event.title"
+                    />
+                    <div class="p-2 relative">
+                        <h2 class="text-2xl font-bold font-coustard">
+                            {{ event.title | titlecase }}
+                        </h2>
+                        <p
+                            class="w-full"
+                            [ngClass]="{
+                                'truncate': activeElement() !== event.id,
+                            }"
                         >
-                            voir +
-                        </button>
-                    } @else {
-                        <button
-                            type="button"
-                            (click)="showLess()"
-                            class="bottom-0 right-2 border rounded-lg px-1 mt-1 hover:bg-primary hover:text-gray-100"
-                        >
-                            voir -
-                        </button>
-                    }
-                </div>
-            </li>
-        }
-    </ul>
+                            {{ event.description }}
+                        </p>
+                        @if (activeElement() !== event.id) {
+                            <button
+                                type="button"
+                                (click)="showMore(event.id)"
+                                class="bottom-0 right-2 border rounded-lg px-1 mt-1 hover:bg-primary hover:text-gray-100"
+                            >
+                                voir +
+                            </button>
+                        } @else {
+                            <button
+                                type="button"
+                                (click)="showLess()"
+                                class="bottom-0 right-2 border rounded-lg px-1 mt-1 hover:bg-primary hover:text-gray-100"
+                            >
+                                voir -
+                            </button>
+                        }
+                    </div>
+                </li>
+            }
+        </ul>
+    } @else {
+        <p class="text-lg italic">Pas de propositions pour le moment, revenez plus tard ! </p>
+    }
 </section>

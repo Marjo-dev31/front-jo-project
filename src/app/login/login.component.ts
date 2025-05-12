@@ -12,7 +12,7 @@ import { AuthService } from '../shared/services/auth.service';
     selector: 'app-login',
     imports: [RouterLink, ReactiveFormsModule],
     templateUrl: './login.component.html',
-    styleUrl: './login.component.css',
+    styles: '',
 })
 export class LoginComponent {
     private readonly authService = inject(AuthService);

@@ -17,7 +17,7 @@ import {
     selector: 'app-offer-admin',
     imports: [TitleCasePipe, NgStyle, ReactiveFormsModule],
     templateUrl: './offers-admin.component.html',
-    styleUrl: './offers-admin.component.css',
+    styles: '',
 })
 export class OfferAdminComponent {
     private readonly offerService = inject(OfferService);

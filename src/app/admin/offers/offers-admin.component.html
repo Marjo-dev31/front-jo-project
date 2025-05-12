@@ -2,22 +2,32 @@
     <h2 class="text-center text-2xl font-bold font-coustard my-4">
         Les offres
     </h2>
-    <div class="flex flex-col justify-center md:items-center w-full mb-10 overflow-auto ">
+    <div
+        class="flex flex-col justify-center md:items-center w-full mb-10 overflow-auto"
+    >
         <table
-            class=" border border-primary rounded-lg shadow-lg shadow-font/50 md:w-3/4 text-center md:text-left "
+            class="border border-primary rounded-lg shadow-lg shadow-font/50 md:w-3/4 text-center md:text-left"
         >
             <thead class="bg-secondary/10">
                 <tr>
-                    <th class="p-2 md:p-4 border-b border-orange tracking-wide">Titre</th>
+                    <th class="p-2 md:p-4 border-b border-orange tracking-wide">
+                        Titre
+                    </th>
                     <th class="p-2 md:p-4 border-b border-orange tracking-wide">
                         Description
                     </th>
-                    <th class="p-2 md:p-4 border-b border-orange tracking-wide">Prix</th>
+                    <th class="p-2 md:p-4 border-b border-orange tracking-wide">
+                        Prix
+                    </th>
                     <th class="p-2 md:p-4 border-b border-orange tracking-wide">
                         Nombre de vente
                     </th>
-                    <th class="p-2 md:p-4 border-b border-orange tracking-wide">Photo</th>
-                    <th class="p-2 md:p-4 border-b border-orange tracking-wide">Actions</th>
+                    <th class="p-2 md:p-4 border-b border-orange tracking-wide">
+                        Photo
+                    </th>
+                    <th class="p-2 md:p-4 border-b border-orange tracking-wide">
+                        Actions
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -26,7 +36,7 @@
                         <th class="p-2 md:p-4 border-b border-primary/50">
                             {{ offer.title | titlecase }}
                         </th>
-                        <td class="p-2 md:p-4 border-b border-primary/50 ">
+                        <td class="p-2 md:p-4 border-b border-primary/50">
                             {{ offer.description }}
                         </td>
                         <td class="p-2 md:p-4 border-b border-primary/50">
@@ -177,14 +187,16 @@
                 formControlName="price"
         /></label>
         @if (price.errors && price.touched) {
-            @if(price.hasError('required')){
+            @if (price.hasError('required')) {
                 <span class="text-sm text-orange">Veuillez saisir un prix</span>
+            }
         }
-            }
-            @if(price.hasError('pattern')){
-                <span class="text-sm text-orange">Le prix doit être uniquement en chiffre</span>
-            }
-            
+        @if (price.hasError('pattern')) {
+            <span class="text-sm text-orange"
+                >Le prix doit être uniquement en chiffre</span
+            >
+        }
+
         <label class="w-full"
             >Photo:
             <input
@@ -205,7 +217,7 @@
                 Valider
             </button>
             <button
-            type="reset"
+                type="reset"
                 class="border p-1 rounded-lg mt-4 bg-primary text-secondary font-bold hover:bg-orange hover:text-gray-100 transition-colors delay-100 duration-300 disabled:text-secondary disabled:bg-primary/50"
             >
                 Annuler
@@ -213,6 +225,10 @@
         </div>
     </form>
     @if (formIsSubmitted()) {
-        <p class="bg-gray-100 p-2 text-orange transition-all delay-100 ease-in duration-700 animate-opacity">Nouvelle offre créée</p>
+        <p
+            class="bg-gray-100 p-2 text-orange transition-all delay-100 ease-in duration-700 animate-opacity"
+        >
+            Nouvelle offre créée
+        </p>
     }
 </section>

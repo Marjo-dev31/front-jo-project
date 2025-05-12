@@ -30,6 +30,6 @@ export class CartService {
     }
 
     resetCart() {
-        this.cart.update((value ) => value = []);
+        this.cart.update((value) => (value = []));
     }
 }

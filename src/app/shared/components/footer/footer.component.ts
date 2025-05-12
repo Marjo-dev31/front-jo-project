@@ -15,21 +15,21 @@ import { RouterLink } from '@angular/router';
             <div class="md:col-start-4">
                 <ul class="flex items-center justify-center gap-4">
                     <li>
-                        <a href=""
+                        <a
                             ><img
                                 src="/icon-facebook.svg"
                                 alt="Lien vers notre compte Facebook"
                         /></a>
                     </li>
                     <li>
-                        <a href=""
+                        <a
                             ><img
                                 src="/icon-instagram.svg"
                                 alt="Lien vers notre compte Instagram"
                         /></a>
                     </li>
                     <li>
-                        <a href=""
+                        <a
                             ><img
                                 src="/twitter-x.svg"
                                 alt="Lien vers notre compte X"
@@ -38,7 +38,7 @@ import { RouterLink } from '@angular/router';
                 </ul>
             </div>
             <div class="flex flex-col gap-2 md:col-start-6 justify-around">
-                <a href="" class="hover:underline p-2">Nous contacter</a>
+                <!-- <a href="" class="hover:underline p-2">Nous contacter</a> -->
                 <a
                     [routerLink]="['/politiquedeconfidentialite']"
                     class="hover:underline"

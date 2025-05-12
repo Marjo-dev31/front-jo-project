@@ -9,7 +9,7 @@ Chart.register(...registerables);
     selector: 'app-graph',
     imports: [],
     templateUrl: './graph.component.html',
-    styleUrl: './graph.component.css',
+    styles: '',
 })
 export class GraphComponent implements OnInit {
     private readonly OfferService = inject(OfferService);

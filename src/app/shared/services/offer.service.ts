@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class OfferService {
     private readonly http = inject(HttpClient);
-    private url = 'http://localhost:3000/offer';
+    private readonly url = 'http://localhost:3000/offer';
 
     getAllOffers(): Observable<OfferInterface[]> {
         return this.http.get<OfferInterface[]>(this.url);

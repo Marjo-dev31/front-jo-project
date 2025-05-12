@@ -1,6 +1,6 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { CurrencyPipe } from '@angular/common';
-import { Component, computed, inject, Signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import {
     FormControl,
     FormGroup,
@@ -14,14 +14,14 @@ import { CartService } from '../shared/services/cart.service';
     selector: 'app-payment',
     imports: [ReactiveFormsModule, CurrencyPipe],
     templateUrl: './payment.component.html',
-    styleUrl: './payment.component.css',
+    styles: '',
 })
 export class PaymentComponent {
     private readonly orderService = inject(OrderService);
-    private readonly cartService = inject(CartService)
+    private readonly cartService = inject(CartService);
     dialogRef = inject<DialogRef<string>>(DialogRef<string>);
     data = inject(DIALOG_DATA);
-    cart = computed(()=> this.cartService.cart())
+    cart = computed(() => this.cartService.cart());
 
     paymentForm = new FormGroup({
         lastname: new FormControl('', [Validators.required]),
