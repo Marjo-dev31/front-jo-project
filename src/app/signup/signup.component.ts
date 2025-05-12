@@ -13,7 +13,7 @@ import { AuthService } from '../shared/services/auth.service';
     selector: 'app-signup',
     imports: [RouterLink, ReactiveFormsModule],
     templateUrl: './signup.component.html',
-    styleUrl: './signup.component.css',
+    styles: '',
 })
 export class SignupComponent {
     private readonly authService = inject(AuthService);

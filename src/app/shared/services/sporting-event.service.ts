@@ -5,13 +5,14 @@ import {
 } from '../models/sportingevent.interface';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environments';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SportingEventService {
     private readonly http = inject(HttpClient);
-    private readonly url = 'http://localhost:3000/sporting-event';
+    private readonly url = `${environment.serverUrl}/sporting-event`;
 
     getAllSportingEvents(): Observable<SportingEventInterface[]> {
         return this.http.get<SportingEventInterface[]>(this.url);
