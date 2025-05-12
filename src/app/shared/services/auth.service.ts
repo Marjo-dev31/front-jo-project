@@ -7,13 +7,14 @@ import {
     UserCreateInterface,
     UserInterface,
 } from '../models/user.interface';
+import { environment } from '../../environments/environments';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
     private readonly http = inject(HttpClient);
-    private readonly url = 'http://localhost:3000/auth';
+    private readonly url = `${environment.serverUrl}/auth`;
 
     isLogin = signal(false);
     isAdmin = signal(false);

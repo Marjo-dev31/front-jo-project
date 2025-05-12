@@ -7,13 +7,14 @@ import {
 } from '../models/order.interface';
 import { cartItemInterface } from '../models/cart-item.interface';
 import { AuthService } from './auth.service';
+import { environment } from '../../environments/environments';
 
 @Injectable({
     providedIn: 'root',
 })
 export class OrderService {
     private readonly http = inject(HttpClient);
-    private readonly url = 'http://localhost:3000/orders';
+    private readonly url = `${environment.serverUrl}/orders`;
     private readonly authService = inject(AuthService);
 
     currentUserId = computed(() => this.authService.connectedUser().id);

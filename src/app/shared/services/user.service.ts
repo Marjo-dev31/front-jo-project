@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { UserInterface, UserUpdatedInterface } from '../models/user.interface';
+import { environment } from '../../environments/environments';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UserService {
     private readonly http = inject(HttpClient);
-    private readonly url = 'http://localhost:3000/user';
+    private readonly url = `${environment.serverUrl}/user`;
 
     user = signal<UserInterface>({
         id: '',

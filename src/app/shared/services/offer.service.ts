@@ -5,13 +5,14 @@ import {
 } from '../models/offer.interface';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environments';
 
 @Injectable({
     providedIn: 'root',
 })
 export class OfferService {
     private readonly http = inject(HttpClient);
-    private readonly url = 'http://localhost:3000/offer';
+    private readonly url = `${environment.serverUrl}/offer`;
 
     getAllOffers(): Observable<OfferInterface[]> {
         return this.http.get<OfferInterface[]>(this.url);
