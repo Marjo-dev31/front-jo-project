@@ -116,6 +116,7 @@
     <h2 class="text-center text-2xl font-bold font-coustard my-4">
         Mon historique:
     </h2>
+    @if(tickets()){
     <div
         class="w-full flex justify-center mb-10 overflow-auto md:overflow-visible"
     >
@@ -192,5 +193,5 @@
                 }
             </tbody>
         </table>
-    </div>
+    </div> }
 </section>

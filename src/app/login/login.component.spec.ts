@@ -46,6 +46,7 @@ describe('LoginComponent', () => {
         fixture = TestBed.createComponent(LoginComponent);
         component = fixture.componentInstance;
         router = TestBed.inject(Router);
+
         component.loginForm.setValue({
             email: 'test@example.com',
             password: 'password123',
