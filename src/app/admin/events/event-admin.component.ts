@@ -63,7 +63,8 @@ export class EventAdminComponent {
 
         // check if alreadyExist and make put or post
         const sportingEventAlreadyExist = this.sportingEvents()?.find(
-            (el) => el.title === newSportingEvent.title,
+            (el) =>
+                el.title.toLowerCase() === newSportingEvent.title.toLowerCase(),
         );
         if (sportingEventAlreadyExist) {
             const updatedSportingEvent: SportingEventInterface = {
