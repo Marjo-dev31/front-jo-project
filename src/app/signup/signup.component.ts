@@ -47,9 +47,9 @@ export class SignupComponent {
         };
         this.authService.signup(newUser).subscribe((response) => {
             if (response.user.isAdmin) {
-                this.router.navigate(['/backoffice']);
+                this.router.navigate(['backoffice']);
             } else {
-                this.router.navigate(['/espacepersonnel']);
+                this.router.navigate(['espacepersonnel']);
             }
         });
         this.signupForm.reset();
