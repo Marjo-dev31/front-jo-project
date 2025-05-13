@@ -19,8 +19,10 @@ import { CartService } from '../shared/services/cart.service';
 export class PaymentComponent {
     private readonly orderService = inject(OrderService);
     private readonly cartService = inject(CartService);
+
     dialogRef = inject<DialogRef<string>>(DialogRef<string>);
     data = inject(DIALOG_DATA);
+
     cart = computed(() => this.cartService.cart());
 
     paymentForm = new FormGroup({
@@ -59,9 +61,8 @@ export class PaymentComponent {
 
     onSubmit() {
         if (this.paymentForm.valid) {
-            // send card in service to create an order in api
             this.orderService.createOrder(this.cart()).subscribe();
-            console.log(this.paymentForm.value);
+            // console.log(this.paymentForm.value);
             this.paymentForm.reset();
             this.close();
             alert(
