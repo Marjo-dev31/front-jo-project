@@ -68,7 +68,7 @@ export class CartComponent {
             dialogRef.closed.subscribe(() => {
                 console.log('the dialog was closed');
                 this.resetCart();
-                this.router.navigateByUrl('espacepersonnel')
+                this.router.navigateByUrl('espacepersonnel');
             });
         } else {
             this.router.navigateByUrl('login');
