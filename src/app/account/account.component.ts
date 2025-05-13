@@ -1,4 +1,11 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import {
+    Component,
+    computed,
+    DestroyRef,
+    inject,
+    OnInit,
+    signal,
+} from '@angular/core';
 import {
     FormControl,
     FormGroup,
@@ -15,6 +22,7 @@ import { DatePipe } from '@angular/common';
 import { jsPDF } from 'jspdf';
 import { QRCodeComponent } from 'angularx-qrcode';
 import { SafeUrl } from '@angular/platform-browser';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-account',
@@ -26,6 +34,7 @@ export class AccountComponent implements OnInit {
     private readonly authService = inject(AuthService);
     private readonly userService = inject(UserService);
     private readonly ticketService = inject(TicketService);
+    private readonly destroyRef = inject(DestroyRef);
 
     connectedUser = computed(() => this.authService.connectedUser());
     currentUser = computed(() => {
@@ -74,13 +83,19 @@ export class AccountComponent implements OnInit {
         };
         this.userService
             .updateUser(updatedUser)
-            .pipe(tap(() => this.getUserById()))
+            .pipe(
+                tap(() => this.getUserById()),
+                takeUntilDestroyed(this.destroyRef),
+            )
             .subscribe();
         this.updateForm.reset();
     }
 
     getUserById() {
-        this.userService.getUserById(this.currentUser().id).subscribe();
+        this.userService
+            .getUserById(this.currentUser().id)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe();
         this.currentUser = computed(() => this.userService.user());
     }
 
@@ -109,6 +124,7 @@ export class AccountComponent implements OnInit {
     getTicketsByUser() {
         this.ticketService
             .getAllByUser(this.currentUser().id)
+            .pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe((response) =>
                 this.tickets.update((value) => (value = response)),
             );
