@@ -29,6 +29,7 @@ export class OfferComponent {
         this.sportingEventService.getAllSportingEvents(),
     );
     public formIsSubmitted = signal<boolean>(false);
+
     url = `${environment.serverUrl}/offer/upload/`;
 
     readonly form = new FormGroup({
