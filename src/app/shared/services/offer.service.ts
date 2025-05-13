@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import {
     OfferCreateInterface,
     OfferInterface,
@@ -14,8 +14,10 @@ export class OfferService {
     private readonly http = inject(HttpClient);
     private readonly url = `${environment.serverUrl}/offer`;
 
+    offers = signal<OfferInterface[]>([]);
+
     getAllOffers(): Observable<OfferInterface[]> {
-        return this.http.get<OfferInterface[]>(this.url);
+        return this.http.get<OfferInterface[]>(this.url).pipe();
     }
 
     addOffer(newOffer: OfferCreateInterface): Observable<OfferInterface> {
