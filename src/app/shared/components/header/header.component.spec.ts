@@ -47,7 +47,6 @@ describe('HeaderComponent', () => {
     });
 
     it('should return false when isLogin is false', () => {
-        // mockAuthService.isLogin.mockReturnValue(true);
         expect(component.isLogin()).toBe(false);
     });
 });

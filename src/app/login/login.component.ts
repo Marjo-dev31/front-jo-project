@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import {
     FormControl,
     FormGroup,
@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-login',
@@ -17,6 +18,7 @@ import { AuthService } from '../shared/services/auth.service';
 export class LoginComponent {
     private readonly authService = inject(AuthService);
     private readonly router = inject(Router);
+    private readonly destroyRef = inject(DestroyRef);
 
     loginForm = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
@@ -33,15 +35,19 @@ export class LoginComponent {
             email: this.email.value,
             password: this.password.value,
         };
-        this.authService.login(loginUser).subscribe((response) => {
-            if (response.user) {
-                if (!response.user.isAdmin) {
-                    this.router.navigate(['espacepersonnel']);
-                } else if (response.user.isAdmin) {
-                    this.router.navigate(['backoffice']);
+
+        this.authService
+            .login(loginUser)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe((response) => {
+                if (response.user) {
+                    if (!response.user.isAdmin) {
+                        this.router.navigate(['espacepersonnel']);
+                    } else if (response.user.isAdmin) {
+                        this.router.navigate(['backoffice']);
+                    }
                 }
-            }
-        });
+            });
         const alertElement = document.getElementById('wrong-credential');
         alertElement?.classList.remove('hidden');
         this.loginForm.reset();

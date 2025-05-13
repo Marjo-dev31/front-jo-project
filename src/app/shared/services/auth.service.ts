@@ -3,7 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import {
     LoginResponse,
-    loginUserInterface,
+    LoginUserInterface,
     UserCreateInterface,
     UserInterface,
 } from '../models/user.interface';
@@ -32,7 +32,7 @@ export class AuthService {
 
     access_token = signal('');
 
-    login(loginUser: loginUserInterface): Observable<LoginResponse> {
+    login(loginUser: LoginUserInterface): Observable<LoginResponse> {
         return this.http
             .post<LoginResponse>(`${this.url}/login`, loginUser)
             .pipe(

@@ -1,16 +1,16 @@
-export interface loginUserInterface {
+export interface LoginUserInterface {
     email: string;
     password: string;
 }
 
-export interface UserCreateInterface extends loginUserInterface {
+export interface UserCreateInterface extends LoginUserInterface {
     firstname: string;
     lastname: string;
     username: string;
 }
 
 export interface UserUpdatedInterface extends UserCreateInterface {
-    id: string
+    id: string;
 }
 
 export interface UserInterface extends UserUpdatedInterface {
