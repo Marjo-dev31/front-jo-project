@@ -12,7 +12,7 @@ import {
     OfferCreateInterface,
     OfferInterface,
 } from '../../shared/models/offer.interface';
-import { switchMap, tap } from 'rxjs';
+import { tap } from 'rxjs';
 
 @Component({
     selector: 'app-offer-admin',
@@ -24,16 +24,15 @@ export class OfferAdminComponent implements OnInit {
     private readonly offerService = inject(OfferService);
 
     public offers!: OfferInterface[] | undefined;
+
     public addFormIsShow = signal(false);
     selectedFile: File | null = null;
     formIsSubmitted = signal(false);
 
     ngOnInit(): void {
-        // this.offers = toSignal(this.offerService.getAllOffers())();
-        this.offerService.getAllOffers().subscribe((offers) => {
-            this.offers = offers;
-        });
+        this.getAllOffers();
     }
+
     addForm = new FormGroup({
         title: new FormControl('', [Validators.required]),
         description: new FormControl('', [Validators.required]),
@@ -60,6 +59,12 @@ export class OfferAdminComponent implements OnInit {
         });
     }
 
+    getAllOffers() {
+        this.offerService
+            .getAllOffers()
+            .subscribe((offers) => (this.offers = offers));
+    }
+
     onSubmit() {
         const formData = new FormData();
         formData.append('file', this.selectedFile as File);
@@ -67,14 +72,14 @@ export class OfferAdminComponent implements OnInit {
 
         // const imgUrl = this.imgUrl.value.split(`\\`).slice(-1);
         const imgUrl = this.selectedFile?.name.split('\\').slice(-1);
-        const imgUrlFromForm = this.imgUrl.value.split(`\\`).slice(-1);
+        // const imgUrlFromForm = this.imgUrl?.value.split(`\\`).slice(-1);
 
         const newOffer: OfferCreateInterface = {
             title: this.title.value,
             description: this.description.value,
             price: this.price.value,
             numberOfSales: 0,
-            imgUrl: imgUrl ? imgUrl[0] : imgUrlFromForm[0],
+            imgUrl: imgUrl ? imgUrl[0] : '',
         };
 
         const offerAlreadyExist = this.offers?.find(
@@ -87,12 +92,12 @@ export class OfferAdminComponent implements OnInit {
             };
             this.offerService
                 .updateOffer(updatedOffer)
-                .pipe(tap(() => this.offerService.getAllOffers()))
+                .pipe(tap(() => this.getAllOffers()))
                 .subscribe();
         } else {
             this.offerService
                 .addOffer(newOffer)
-                .pipe(switchMap(() => this.offerService.getAllOffers()))
+                .pipe(tap(() => this.getAllOffers()))
                 .subscribe();
         }
         this.formIsSubmitted.set(true);
@@ -107,7 +112,10 @@ export class OfferAdminComponent implements OnInit {
     }
 
     deleteOffer(id: string) {
-        this.offerService.deleteOffer(id).subscribe();
+        this.offerService
+            .deleteOffer(id)
+            .pipe(tap(() => this.getAllOffers()))
+            .subscribe();
     }
 
     get title() {
