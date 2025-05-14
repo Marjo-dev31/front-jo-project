@@ -125,9 +125,7 @@ export class AccountComponent implements OnInit {
         this.ticketService
             .getAllByUser(this.currentUser().id)
             .pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe((response) =>
-                this.tickets.update((value) => (value = response)),
-            );
+            .subscribe((response) => this.tickets.set(response));
     }
 
     // generatePdf() {

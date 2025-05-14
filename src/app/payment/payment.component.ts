@@ -1,6 +1,6 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { CurrencyPipe } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, DestroyRef, inject } from '@angular/core';
 import {
     FormControl,
     FormGroup,
@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { OrderService } from '../shared/services/order.service';
 import { CartService } from '../shared/services/cart.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-payment',
@@ -19,6 +20,7 @@ import { CartService } from '../shared/services/cart.service';
 export class PaymentComponent {
     private readonly orderService = inject(OrderService);
     private readonly cartService = inject(CartService);
+    private readonly destroyRef = inject(DestroyRef);
 
     dialogRef = inject<DialogRef<string>>(DialogRef<string>);
     data = inject(DIALOG_DATA);
@@ -61,8 +63,10 @@ export class PaymentComponent {
 
     onSubmit() {
         if (this.paymentForm.valid) {
-            this.orderService.createOrder(this.cart()).subscribe();
-            // console.log(this.paymentForm.value);
+            this.orderService
+                .createOrder(this.cart())
+                .pipe(takeUntilDestroyed(this.destroyRef))
+                .subscribe();
             this.paymentForm.reset();
             this.close();
             alert(
