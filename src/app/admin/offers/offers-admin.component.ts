@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { OfferService } from '../../shared/services/offer.service';
 import { NgStyle, TitleCasePipe } from '@angular/common';
 
@@ -13,6 +13,7 @@ import {
     OfferInterface,
 } from '../../shared/models/offer.interface';
 import { tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-offer-admin',
@@ -22,6 +23,7 @@ import { tap } from 'rxjs';
 })
 export class OfferAdminComponent implements OnInit {
     private readonly offerService = inject(OfferService);
+    private readonly destroyRef = inject(DestroyRef);
 
     public offers!: OfferInterface[] | undefined;
 
@@ -62,13 +64,18 @@ export class OfferAdminComponent implements OnInit {
     getAllOffers() {
         this.offerService
             .getAllOffers()
+            .pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe((offers) => (this.offers = offers));
     }
 
     onSubmit() {
         const formData = new FormData();
         formData.append('file', this.selectedFile as File);
-        this.offerService.addImage(formData).subscribe();
+
+        this.offerService
+            .addImage(formData)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe();
 
         const imgUrl = this.selectedFile?.name.split('\\').slice(-1);
 
@@ -90,12 +97,18 @@ export class OfferAdminComponent implements OnInit {
             };
             this.offerService
                 .updateOffer(updatedOffer)
-                .pipe(tap(() => this.getAllOffers()))
+                .pipe(
+                    tap(() => this.getAllOffers()),
+                    takeUntilDestroyed(this.destroyRef),
+                )
                 .subscribe();
         } else {
             this.offerService
                 .addOffer(newOffer)
-                .pipe(tap(() => this.getAllOffers()))
+                .pipe(
+                    tap(() => this.getAllOffers()),
+                    takeUntilDestroyed(this.destroyRef),
+                )
                 .subscribe();
         }
         this.formIsSubmitted.set(true);
@@ -112,7 +125,10 @@ export class OfferAdminComponent implements OnInit {
     deleteOffer(id: string) {
         this.offerService
             .deleteOffer(id)
-            .pipe(tap(() => this.getAllOffers()))
+            .pipe(
+                tap(() => this.getAllOffers()),
+                takeUntilDestroyed(this.destroyRef),
+            )
             .subscribe();
     }
 

@@ -1,7 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { OfferService } from '../../shared/services/offer.service';
 import { Chart, ChartConfiguration, registerables } from 'chart.js';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 Chart.register(...registerables);
 
@@ -13,6 +13,7 @@ Chart.register(...registerables);
 })
 export class GraphComponent implements OnInit {
     private readonly OfferService = inject(OfferService);
+    private readonly destroyRef = inject(DestroyRef);
 
     offers = toSignal(this.OfferService.getAllOffers());
     chart!: Chart;
@@ -34,6 +35,7 @@ export class GraphComponent implements OnInit {
                                 return el.numberOfSales;
                             }),
                         ),
+                        takeUntilDestroyed(this.destroyRef),
                     )
                     .subscribe((n) => {
                         const config: ChartConfiguration = {
