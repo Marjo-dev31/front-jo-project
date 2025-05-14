@@ -70,9 +70,7 @@ export class OfferAdminComponent implements OnInit {
         formData.append('file', this.selectedFile as File);
         this.offerService.addImage(formData).subscribe();
 
-        // const imgUrl = this.imgUrl.value.split(`\\`).slice(-1);
         const imgUrl = this.selectedFile?.name.split('\\').slice(-1);
-        // const imgUrlFromForm = this.imgUrl?.value.split(`\\`).slice(-1);
 
         const newOffer: OfferCreateInterface = {
             title: this.title.value,

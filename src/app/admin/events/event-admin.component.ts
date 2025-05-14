@@ -1,7 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { SportingEventService } from '../../shared/services/sporting-event.service';
 import { NgStyle, TitleCasePipe } from '@angular/common';
-import { toSignal } from '@angular/core/rxjs-interop';
 import {
     SportingEventCreateInterface,
     SportingEventInterface,
@@ -12,6 +11,7 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
+import { tap } from 'rxjs';
 
 @Component({
     selector: 'app-event-admin',
@@ -19,10 +19,10 @@ import {
     templateUrl: './event-admin.component.html',
     styles: '',
 })
-export class EventAdminComponent {
+export class EventAdminComponent implements OnInit {
     private readonly sportingEventService = inject(SportingEventService);
 
-    sportingEvents = toSignal(this.sportingEventService.getAllSportingEvents());
+    sportingEvents!: SportingEventInterface[];
     addFormIsShow = signal(false);
     formIsSubmitted = signal(false);
     selectedFile: File | null = null;
@@ -32,6 +32,10 @@ export class EventAdminComponent {
         description: new FormControl('', [Validators.required]),
         imgUrl: new FormControl('', [Validators.required]),
     });
+
+    ngOnInit(): void {
+        this.getAllSportingEvents();
+    }
 
     showAddForm() {
         this.addFormIsShow.update((value) => !value);
@@ -44,6 +48,14 @@ export class EventAdminComponent {
             title: sportingEvent.title,
             description: sportingEvent.description,
         });
+    }
+
+    getAllSportingEvents() {
+        this.sportingEventService
+            .getAllSportingEvents()
+            .subscribe(
+                (sportingEvents) => (this.sportingEvents = sportingEvents),
+            );
     }
 
     onSubmit() {
@@ -62,7 +74,7 @@ export class EventAdminComponent {
         };
 
         // check if alreadyExist and make put or post
-        const sportingEventAlreadyExist = this.sportingEvents()?.find(
+        const sportingEventAlreadyExist = this.sportingEvents?.find(
             (el) =>
                 el.title.toLowerCase() === newSportingEvent.title.toLowerCase(),
         );
@@ -73,10 +85,12 @@ export class EventAdminComponent {
             };
             this.sportingEventService
                 .updateSportingEvent(updatedSportingEvent)
+                .pipe(tap(() => this.getAllSportingEvents()))
                 .subscribe();
         } else {
             this.sportingEventService
                 .addSportingEvent(newSportingEvent)
+                .pipe(tap(() => this.getAllSportingEvents()))
                 .subscribe();
         }
     }
@@ -89,7 +103,10 @@ export class EventAdminComponent {
     }
 
     deleteEvent(id: string) {
-        this.sportingEventService.deleteEvent(id).subscribe();
+        this.sportingEventService
+            .deleteEvent(id)
+            .pipe(tap(() => this.getAllSportingEvents()))
+            .subscribe();
     }
 
     get title() {
