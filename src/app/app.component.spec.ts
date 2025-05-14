@@ -1,10 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { AuthService } from './shared/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 describe('AppComponent', () => {
+    const mockAuthService = {
+        isLogin: jest.fn().mockReturnValue(false),
+        isAdmin: jest.fn().mockReturnValue(false),
+    };
+    let mockActivatedRoute;
+
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [AppComponent],
+            providers: [
+                { provide: AuthService, useValue: mockAuthService },
+                { provide: ActivatedRoute, useValue: mockActivatedRoute },
+            ],
         }).compileComponents();
     });
 
@@ -24,8 +36,6 @@ describe('AppComponent', () => {
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         const compiled = fixture.nativeElement as HTMLElement;
-        expect(compiled.querySelector('h1')?.textContent).toContain(
-            'Hello, front-jo',
-        );
+        expect(compiled.querySelector('nav')?.textContent).toContain('Offres');
     });
 });
