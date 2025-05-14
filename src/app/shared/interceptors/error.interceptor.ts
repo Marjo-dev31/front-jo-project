@@ -13,9 +13,12 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
                         router.navigateByUrl('/erreur');
                         break;
                     case 400:
-                        console.log(err)
-                        if(err.error.message === 'Email ou mot de passe invalide'){
-                            router.navigateByUrl('/login')
+                        console.log(err);
+                        if (
+                            err.error.message ===
+                            'Email ou mot de passe invalide'
+                        ) {
+                            router.navigateByUrl('/login');
                         } else {
                             router.navigateByUrl('/erreur');
                         }
