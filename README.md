@@ -2,6 +2,57 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.7.
 
+## Prerequisites globally
+
+ "dependencies": {
+    "@angular/animations": "^19.0.0",
+    "@angular/cdk": "^19.2.4",
+    "@angular/common": "^19.0.0",
+    "@angular/compiler": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/forms": "^19.0.0",
+    "@angular/platform-browser": "^19.0.0",
+    "@angular/platform-browser-dynamic": "^19.0.0",
+    "@angular/router": "^19.0.0",
+    "@tailwindcss/postcss": "^4.0.9",
+    "angularx-qrcode": "^19.0.0",
+    "chart.js": "^4.4.8",
+    "html2canvas": "^1.4.1",
+    "html2canvas-pro": "^1.5.8",
+    "jspdf": "^3.0.1",
+    "postcss": "^8.5.3",
+    "pretty-quick": "^4.0.0",
+    "rxjs": "~7.8.0",
+    "tailwindcss": "^4.0.9",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.0.7",
+    "@angular/cli": "^19.0.7",
+    "@angular/compiler-cli": "^19.0.0",
+    "@types/jest": "^29.5.14",
+    "angular-eslint": "19.1.0",
+    "eslint": "^9.20.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "globals": "^16.0.0",
+    "jest": "^29.7.0",
+    "jest-preset-angular": "^14.5.5",
+    "prettier": "^3.5.2",
+    "prettier-eslint": "^16.3.0",
+    "ts-jest": "^29.3.2",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "8.23.0"
+  },
+
+## Create directory and clone repository
+
+mkdir <directoryNameToChoose>
+install git git@github.com:Marjo-dev31/front-jo-project.git
+git clone 
+
 ## Development server
 
 To start a local development server, run:
