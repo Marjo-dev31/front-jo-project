@@ -8,7 +8,7 @@
     class="flex flex-col justify-center items-center w-full mb-10 overflow-auto"
 >
     <table
-        class="table-auto border border-primary rounded-lg shadow-lg shadow-font/50 w-3/4 text-left"
+        class="table-auto border border-primary rounded-lg shadow-lg shadow-font/50 w-3/4 text-center md:text-left"
     >
         <thead class="bg-secondary/10">
             <tr class="border-b border-orange">
@@ -29,7 +29,7 @@
                     <td class="p-2 md:p-4">
                         {{ item.price }}
                     </td>
-                    <td class="p-2 md:p-4 flex justify-evenly">
+                    <td class="p-2 md:p-4 flex flex-col md:flex-row justify-evenly items-center">
                         <button
                             type="button"
                             (click)="
@@ -50,9 +50,10 @@
                                     stroke-linejoin="round"
                                     d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                                 />
-                            </svg></button
-                        >{{ item.quantity
-                        }}<button
+                            </svg>
+                        </button>
+                        <div>{{ item.quantity }}</div>
+                        <button
                             type="button"
                             (click)="
                                 increment(item.offerId, item.sportingEventId)
