@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { SportingEventService } from '../shared/services/sporting-event.service';
 import { of } from 'rxjs';
-import { environment } from '../environments/environments';
+import { environment } from '../../environments/environments';
 import { ActivatedRoute } from '@angular/router';
 
 describe('HomeComponent', () => {

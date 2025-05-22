@@ -11,7 +11,7 @@ import { SportingEventService } from '../shared/services/sporting-event.service'
 import { CartService } from '../shared/services/cart.service';
 import { cartItemInterface } from '../shared/models/cart-item.interface';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { environment } from '../environments/environments';
+import { environment } from '../../environments/environments';
 
 @Component({
     selector: 'app-offer',

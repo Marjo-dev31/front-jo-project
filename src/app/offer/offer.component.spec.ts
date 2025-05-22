@@ -5,7 +5,7 @@ import { CartService } from '../shared/services/cart.service';
 import { OfferService } from '../shared/services/offer.service';
 import { SportingEventService } from '../shared/services/sporting-event.service';
 import { of } from 'rxjs';
-import { environment } from '../environments/environments';
+import { environment } from '../../environments/environments';
 
 describe('OfferComponent', () => {
     let component: OfferComponent;

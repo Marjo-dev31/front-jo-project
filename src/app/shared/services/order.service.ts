@@ -7,7 +7,7 @@ import {
 } from '../models/order.interface';
 import { cartItemInterface } from '../models/cart-item.interface';
 import { AuthService } from './auth.service';
-import { environment } from '../../environments/environments';
+import { environment } from '../../../environments/environments';
 
 @Injectable({
     providedIn: 'root',

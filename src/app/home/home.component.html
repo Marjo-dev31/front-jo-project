@@ -84,7 +84,7 @@
     <h2 class="w-2/3 text-center my-2 font-coustard text-2xl">
         Parmi les sports les plus populaires, retrouvez :
     </h2>
-    @if (events()) {
+    @if (events()?.length) {
         <ul class="flex flex-col justify-center items-start md:flex-row">
             @for (event of events(); track $index) {
                 <li

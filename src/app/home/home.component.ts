@@ -3,7 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import { SportingEventService } from '../shared/services/sporting-event.service';
 import { RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { environment } from '../environments/environments';
+import { environment } from '../../environments/environments';
 
 @Component({
     selector: 'app-home',
