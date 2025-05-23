@@ -43,7 +43,7 @@ export class OfferAdminComponent implements OnInit {
             Validators.pattern(/^[0-9]\d*$/),
         ]),
         numberOfSales: new FormControl(0),
-        imgUrl: new FormControl(null, [Validators.required]),
+        imgUrl: new FormControl('', [Validators.required]),
     });
 
     showAddForm() {
@@ -69,6 +69,7 @@ export class OfferAdminComponent implements OnInit {
     }
 
     onSubmit() {
+        // create formdata to post img type file
         const formData = new FormData();
         formData.append('file', this.selectedFile as File);
 
@@ -77,16 +78,18 @@ export class OfferAdminComponent implements OnInit {
             .pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe();
 
-        const imgUrl = this.selectedFile?.name.split('\\').slice(-1);
+        // take the name of file and record in newOffer
+        const imgUrl = this.imgUrl.value.split('\\').slice(-1);
 
         const newOffer: OfferCreateInterface = {
             title: this.title.value,
             description: this.description.value,
-            price: this.price.value,
+            price: +this.price.value,
             numberOfSales: 0,
-            imgUrl: imgUrl ? imgUrl[0] : '',
+            imgUrl: imgUrl[0],
         };
 
+        // check if alreadyExist and make put or post
         const offerAlreadyExist = this.offers?.find(
             (el) => el.title.toLowerCase() === newOffer.title.toLowerCase(),
         );

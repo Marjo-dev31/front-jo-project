@@ -67,7 +67,7 @@ describe('OffersComponent', () => {
             description: new FormControl('Description'),
             price: new FormControl(100),
             numberOfSales: new FormControl(0),
-            imgUrl: new FormControl(),
+            imgUrl: new FormControl(''),
         });
 
         component.selectedFile = fakeFile;

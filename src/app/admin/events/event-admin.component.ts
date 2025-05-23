@@ -105,6 +105,8 @@ export class EventAdminComponent implements OnInit {
                 )
                 .subscribe();
         }
+        this.formIsSubmitted.set(true);
+        this.addForm.reset();
     }
 
     onFileSelected(event: Event) {
